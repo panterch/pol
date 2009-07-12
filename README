@@ -11,6 +11,10 @@ sudo gem install haml
 
 haml --rails .
 
+git submodule add cat:/crypt/git/pol.git vendor/plugins/pol
+git submodule init
+git submodule update
+
 rsync -ruv vendor/plugins/pol/db/migrate db
 rsync -ruv vendor/plugins/pol/assets/ public
 
