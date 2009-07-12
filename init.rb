@@ -1,0 +1,10 @@
+require 'RedCloth'
+
+# do reload with each request in development mode
+if 'development' == RAILS_ENV
+  ActiveSupport::Dependencies.load_once_paths.reject! do |path|
+    path.match File.dirname(__FILE__)
+  end
+end
+
+

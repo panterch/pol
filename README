@@ -1,0 +1,27 @@
+sudo gem install RedCloth
+sudo gem install haml
+
+./script/plugin install git://github.com/rails/acts_as_list.git
+./script/plugin install git://github.com/rails/acts_as_tree.git
+./script/plugin install git://github.com/rails/exception_notification.git
+./script/plugin install git://github.com/thoughtbot/paperclip.git
+./script/plugin install git://github.com/technoweenie/permalink_fu.git
+./script/plugin install git://github.com/giraffesoft/resource_controller.git
+./script/plugin install git://github.com/rubypond/semantic_form_builder.git
+
+haml --rails .
+
+rsync -ruv vendor/plugins/pol/db/migrate db
+rsync -ruv vendor/plugins/pol/assets/ public
+
+
+  map.connect '/', :controller => 'pol', :action => 'index'
+  map.connect '/index', :controller => 'pol', :action => 'index'
+  map.connect '/:id.js', :controller => 'pol',
+                         :action => 'replace_comp'
+  map.connect '/:permalink', :controller => 'pol', :action => 'show'
+
+
+# environments/development.rb
+config.reload_plugins = true
+

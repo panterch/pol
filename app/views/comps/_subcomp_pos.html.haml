@@ -1,0 +1,8 @@
+%div{ :style => "display: none;" }
+  %span{ :id => "marker.lat.#{comp.id}" }
+    != comp.lat
+  %span{ :id => "marker.lng.#{comp.id}" }
+    != comp.lng
+  -if render_levels
+    %span{ :id => "marker.level.#{comp.id}"}
+      != comp.level

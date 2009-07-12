@@ -1,0 +1,7 @@
+!= form_common.error_messages
+!= form_common.hidden_field :type
+!= form_common.hidden_field :lat
+!= form_common.hidden_field :lng
+!= form_common.hidden_field :style_class
+-if (form_common.object.level || form_common.object.try(:parent).is_a?(CompMap)) && form_common.object.type != 'CompMap'
+  != form_common.text_field :level, :label => 'Anzeige ab Zoom Level', :help => 'Zoom Level 0: wird immer angezeigt, Werte > 0: wird ab entsprechendem Zoom Level angezeigt.', :style => 'width: 50px;'

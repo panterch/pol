@@ -1,0 +1,2 @@
+page.insert_html(:bottom, :boxes,
+                 :partial => 'comps/subcomp', :locals => { :comp => @comp })

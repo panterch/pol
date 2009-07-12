@@ -1,0 +1,39 @@
+-if gallery.style_class == 'right-box'
+  .gallery-box
+    - images = gallery.children
+    - images.each_index do |index|
+      - image = images[index]
+      - path = image.media.url('gallery-thumbnail')
+      - if require_controls?
+        %span.gallery-image{ :onmouseover => "$('comp_gallery_control_#{image.id}').show();", :onmouseout => "$('comp_gallery_control_#{image.id}').hide();" }
+          %span{ :id => "comp_gallery_control_#{image.id}", :style => 'position: absolute; display: none;' }
+            != render_gallery_controls(gallery, image)
+          %a{ :href => '#', :onclick => "return galleryShowEntry(#{index});"}
+            != image_tag path
+      - else
+        %span.gallery-image
+          %a{ :href => '#', :onclick => "return galleryShowEntry(#{index});"}
+            != image_tag path
+      
+    !=textilize gallery.content
+
+-else
+  -javascript 'lightbox'
+  -javascript 'scriptaculous.js?load=effects,builder'
+  .gallery-full-box
+    - images = gallery.children
+    - images.each_index do |index|
+      - image = images[index]
+      - thumb_path = image.media.url('lightbox-thumbnail')
+      - large_path = image.media.url
+      -if require_controls?
+        %span.gallery-image{ :onmouseover => "$('comp_gallery_control_#{image.id}').show();", :onmouseout => "$('comp_gallery_control_#{image.id}').hide();" }
+          %span{ :id => "comp_gallery_control_#{image.id}", :style => 'position: absolute; display: none;' }
+            != render_gallery_controls(gallery, image)
+          %a{ :href => large_path, :rel => 'lightbox[gallery]', :title => image.content }
+            != image_tag thumb_path
+      - else
+        %span.gallery-image
+          %a{ :href => large_path, :rel => 'lightbox[gallery]', :title => image.content }
+            != image_tag thumb_path
+        

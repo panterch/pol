@@ -1,0 +1,9 @@
+%p{ :style => 'height: 24px; border-top: 1px solid' }
+  != link_to '', edit_page_comp_path(control.page.id, control), :class => 'icon edit', :title => 'Bearbeiten'
+  != link_to '', page_comp_path(control.page.id, control), :confirm => "Are you sure?", :method => :delete, :class => 'icon delete', :title => 'Loeschen'
+  != link_to '', up_page_comp_path(control.page.id, control), :method => :put, :class => 'icon up', :title => 'Nach ober verschieben'
+  != link_to '', down_page_comp_path(control.page.id, control), :method => :put, :class => 'icon down', :title => 'Nach unten verschieben'
+  -if control.pageable?
+    != link_to '', new_page_comp_comp_path(control.page.id, control, :type => 'CompImage' ), :class => 'icon image', :title => 'Neue Bild Unterseite...'
+    -if 'left-box' == control.style_class
+      != link_to '', new_page_comp_comp_path(control.page.id, control, :type => 'CompVideo' ), :class => 'icon video', :title => 'Neue Video Unterseite...'

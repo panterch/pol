@@ -1,0 +1,50 @@
+%h2= "Seite #{@page.title} bearbeiten"
+
+#page_control
+  %a.control-tab{ :id => 'page_control_tab_attribute', :href => '#', :onclick => "return edit_page_attribute();" }
+    Seitenattribute
+  %a.control-tab-active{ :id => 'page_control_tab_content', :href => '#', :onclick => "return edit_page_content();" }
+    Seiteninhalte
+
+#page_form{ :style => 'display: none;' }
+  != render :partial => 'pages/form'
+
+#page_content{ :style => 'display: blcok;' }
+  %hr
+
+  != render :partial => 'pol/comps'
+
+  %hr
+
+  %fieldset
+    %legend Neuer Inhalt hinzufuegen
+    -['top-box', 'bottom-box', 'left-box', 'right-box'].each do |style_class|
+      %div{ :style => 'width: 50%; float: left;' }
+        %p= "Inhalte #{style_class}"
+        %ul
+          %li
+            != link_to "Neuer Text Baustein", new_page_comp_text_path(@page, :style_class => style_class)
+          %li
+            != link_to "Neues Bild", new_page_comp_image_path(@page, :style_class => style_class)
+          %li
+            != link_to "Neue HTML Komponente", new_page_comp_raw_path(@page, :style_class => style_class)
+          %li
+            != link_to "Neue Downlaod Komponente", new_page_comp_file_path(@page, :style_class => style_class)
+          -if 'left-box' == style_class
+            %li
+              != link_to "Neues Video", new_page_comp_video_path(@page, :style_class => style_class)
+          -if 'right-box' == style_class
+            %li
+              != link_to "Neue Karte", new_page_comp_map_path(@page, :style_class => style_class)
+          -if 'right-box' == style_class || 'top-box' == style_class
+            %li
+              != link_to "Neue Gallerie", new_page_comp_gallery_path(@page, :style_class => style_class)
+          %li
+            != link_to "Neue Unternavigation", new_page_comp_subnav_path(@page, :style_class => style_class)
+
+
+-form_for @page, :html => { :method => :delete }  do |f|
+  - field_set_tag "Delete Page" do
+    != f.submit 'Destroy', :confirm => 'This will delete all subpages and contents. Are you sure?'
+
+

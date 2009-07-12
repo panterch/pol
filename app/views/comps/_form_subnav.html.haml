@@ -1,0 +1,4 @@
+- field_set_tag "Unternavigation bearbeiten" do
+  != render :partial => 'comps/form_common', :object => form_subnav
+  != form_subnav.text_area :content, :required => true, :label => 'Inhalt', :help => (link_to 'Syntax', 'http://hobix.com/textile/', :popup => true)
+  != form_subnav.submit('Save')

@@ -1,0 +1,8 @@
+.contact{ :style => 'margin-top: 20px;' }
+  - form_for(@contact) do |f|
+    != f.error_messages
+    - field_set_tag "" do
+      != f.text_field :from, :label => 'Ihre E-Mail Adresse'
+      != f.text_area :body, :label => 'Nachricht'
+
+    != f.submit('Absenden')

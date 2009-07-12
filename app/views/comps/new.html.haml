@@ -1,0 +1,3 @@
+-form_for(:comp, @comp, :url => { :action => 'create', :comp_id => @parent }, :html => { :multipart => true } ) do |form|
+  != render_form_partial(form) 
+

@@ -1,0 +1,4 @@
+%a.flow{ :id => video.id, :href => video.media.url, :style => "background-image:url(#{video.media.url(:normal)})" }
+  != image_tag 'play.png'
+!= javascript_tag "register_video('#{video.id}');"
+!= textilize video.content

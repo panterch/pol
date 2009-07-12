@@ -1,0 +1,24 @@
+#boxes.text
+  .top-box
+    -@page.comps_top.each do |comp|
+      != render_show_partial(comp)
+
+  .left-box
+    
+    -@page.comps_left.each do |comp|
+      != render_show_partial(comp)
+  
+    -unless @page.comp_gallery.nil?
+      -if @page.comp_gallery.style_class == 'right-box'
+        != render_gallery_view(@page)
+      
+  -unless @page.comp_map.nil?
+    != render_map_children(@page)
+    
+  .right-box
+    -@page.comps_right.each do |comp|
+      != render_show_partial(comp)
+  
+  .bottom-box
+    -@page.comps_bottom.each do |comp|
+      != render_show_partial(comp)

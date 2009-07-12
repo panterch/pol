@@ -1,0 +1,4 @@
+- field_set_tag "Download Komponente bearbeiten" do
+  != render :partial => 'comps/form_common', :object => form_file
+  != form_file.file_field :media, :required => true, :label => 'Datei', :help => 'Datei zum Downloaden (z.B. PDF)'
+  != form_file.submit('Save')

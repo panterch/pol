@@ -1,0 +1,4 @@
+%p
+  Download:
+  != link_to file.media_file_name, file.media.url
+  = "[#{number_to_human_size(file.media.size)}]"

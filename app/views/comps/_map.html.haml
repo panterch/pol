@@ -1,0 +1,7 @@
+-javascript_url "http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key="+MAPS_API_KEY
+-javascript 'map'
+#mapviewer{:style => 'width: 230px; height: 400px'}
+!= hidden_field_tag('comp_lat', map.lat, {:id => 'comp_lat'})
+!= hidden_field_tag('comp_lng', map.lng, {:id => 'comp_lng'})
+!= hidden_field_tag('comp_level', map.level, {:id => 'comp_level'})
+!= textilize map.content

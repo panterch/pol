@@ -1,0 +1,3 @@
+class CompMap < Comp
+  
+end

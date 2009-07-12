@@ -1,0 +1,39 @@
+-javascript_url "http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key="+MAPS_API_KEY
+-javascript 'map'
+- field_set_tag "Kartenkomponente bearbeiten" do
+  != render :partial => 'comps/form_common', :object => form_map
+  - if form_map.object.id .nil?
+    %p Wählen Sie den Kartenausschnitt/Zoom sowie Legende und speichern Sie die Kartenkomponente.
+  - else
+    %p Aendern Sie die gewählten Kartenparameter und speichern Sie oder fügen Sie durch Klick in die Karte neue Ereignisse hinzu.
+    %p Sie können bestehende Marker auch verschieben.
+  .text-field
+    .input
+      #mapeditor{:style => 'width: 230px; height: 400px'}
+      #mapinfo
+        %span{ :id => 'coord_lat' }
+          - form_map.object.lat
+        %span
+          != " / "
+        %span{ :id => 'coord_lng' }
+          - form_map.object.lng
+        %span
+          != " / "
+        %span{ :id => 'coord_level' }
+          - form_map.object.level
+        != form_map.hidden_field :level
+        != hidden_field_tag 'map_comp_page_id', form_map.object.try(:page_id)
+  != form_map.text_area :content, :label => 'Legende zur Karte', :help => 'Kann formatiert werden'
+  
+  %div.subcomps
+    #mapaction{ :style => 'display: none;' }
+      - if form_map.object.id.nil?
+        %p Bitte Karte zuerst speichern
+      - else
+        != render_map_controls(form_map.object)
+        
+    != render_subcomps_pos(form_map.object)
+  
+  != form_map.submit('Save')
+
+

@@ -1,0 +1,3 @@
+class CompGallery < Comp
+  
+end

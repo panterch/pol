@@ -1,0 +1,7 @@
+- unless @page.children.nil? || @page.children.length == 0
+  %ul.sub-navigation
+    - children = @page.children
+    - children.each do |c|
+      %li.sub-navigation-item
+        != c.title
+  

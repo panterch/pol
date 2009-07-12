@@ -1,0 +1,14 @@
+-form_for [@page.parent, @page], :html => { :multipart => true }  do |f|
+  - field_set_tag "" do
+    != f.text_field :title, :label => 'Navigationstitel', :help => 'Kurztext fuer die Navigation'
+    != f.text_field :desc, :label => 'Seitentitel', :help => 'Langer Titel auf Seiten'
+    != f.text_field :help, :label => 'Hilfstext', :help => 'Hilfetext ueber Bildnavigation (nur fuer die 4. Ebene in Zusammenhang mit Bildnavigation)'
+    != f.text_field :permalink, :label => 'Permalink', :help => 'Titel fuer Links. Wird generiert wenn leer. Macht die Seite attraktiver fuer Suchmaschinen'
+    != f.file_field :icon, :label => 'Menu icon', :help => 'Bild fuer die 5.  Navigationsstufe'
+    .file-field
+      != f.label :icon, 'Icon Vorschau'
+      != image_tag @page.icon.url
+    != f.check_box :hidden, :label => 'Unterseite', :help => 'Die Seite taucht nicht in der Navigation auf. Sie ist ueber ein "Blaettern"-Link auf der Oberseite erreichbar'
+
+    != f.submit('Save')
+

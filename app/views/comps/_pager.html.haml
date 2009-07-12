@@ -1,0 +1,7 @@
+%p.pager
+  -if !pager.children.blank?
+    != link_to_function forward, "replace_comp(#{pager.id}, #{pager.children.first.id})"
+  -if pager.parent
+    != link_to_function back, "replace_comp(#{pager.id}, #{pager.higher_item.try(:id) || pager.parent.id})"
+  -if pager.parent && pager.lower_item
+    != link_to_function "weiter "+"&gt;"*3, "replace_comp(#{pager.id}, #{pager.lower_item.id})"

@@ -1,0 +1,60 @@
+!!! Strict
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => I18n.locale, :lang => I18n.locale}
+  %head
+    != render :partial => 'layouts/html_head'
+
+  %body{ :class => body_style }
+    #container
+      #header
+        .holder
+          %ul
+            %li!= link_to 'Home', '/'
+            -@root.siblings.each do |o|
+              %li!=page_link o
+          %ul.breadcrumbs
+            - @page.ancestors.reverse.each do |a|
+              %li
+                != link_to a.title.titleize, "/#{a.permalink}"
+                &gt;
+            %li= @page.title.titleize
+        .image
+          != render :partial => 'layouts/image'
+        .main
+          != render :partial => 'layouts/logo'
+          .menu-holder
+            != render :partial => 'layouts/banner'
+            %ul
+              != menu_items(@root.nav_children)
+            -unless @subnav.nil?
+              %ul.submenu
+                != menu_items(@subnav)
+
+      #content-area
+        - unless @ancs.length < 3
+          /.sidebar
+          /%h6= @ancs[2].desc
+          /%ul
+          /!= menu_items(@relnav)
+
+        .content
+          - unless @icon_nav.blank?
+            .foto-box
+              .foto-holder
+                %p
+                  %strong= @page.ancestors_and_self[3].help
+                %ul
+                  - @icon_nav.each do |i|
+                    %li!
+                      %a{ :href => "/#{i.permalink}" }
+                        != image_tag(i.icon.url)
+                        %em= i.title
+          /%h2= @page.desc.blank? ? @page.title : @page.desc
+          - unless @subpage_nav.blank?
+            - content_for :subpages_nav, render_subpage_nav(@subpage_nav)
+            /!= yield :subpages_nav
+
+          != yield
+
+          != yield :subpages_nav
+
+    != render :partial => 'layouts/ga' if defined?(GA_KEY)

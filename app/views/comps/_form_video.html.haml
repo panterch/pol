@@ -1,0 +1,5 @@
+- field_set_tag "Video Component" do
+  != render :partial => 'comps/form_common', :object => form_video
+  != form_video.file_field :media, :required => true, :accept => 'video/x-flv', :label => 'Video', :help => 'Videos bitte im flv Format heraufladen.'
+  != form_video.text_area :content, :label => 'Legende zum Video', :help => 'Kann formatiert werden'
+  != form_video.submit('Save')
