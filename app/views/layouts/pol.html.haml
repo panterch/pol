@@ -21,13 +21,7 @@
           != render :partial => 'layouts/image'
         .main
           != render :partial => 'layouts/logo'
-          .menu-holder
-            != render :partial => 'layouts/banner'
-            %ul
-              != menu_items(@root.nav_children)
-            -unless @subnav.nil?
-              %ul.submenu
-                != menu_items(@subnav)
+          != render :partial => 'layouts/menu_holder'
 
       #content-area
         - unless @ancs.length < 3
@@ -48,7 +42,7 @@
                       %a{ :href => "/#{i.permalink}" }
                         != image_tag(i.icon.url)
                         %em= i.title
-          /%h2= @page.desc.blank? ? @page.title : @page.desc
+          != render :partial => 'layouts/content_title'
           - unless @subpage_nav.blank?
             - content_for :subpages_nav, render_subpage_nav(@subpage_nav)
             /!= yield :subpages_nav

@@ -1,0 +1,7 @@
+.menu-holder
+  != render :partial => 'layouts/banner'
+  %ul
+    != menu_items(@root.nav_children)
+  -unless @subnav.nil?
+    %ul.submenu
+      != menu_items(@subnav)

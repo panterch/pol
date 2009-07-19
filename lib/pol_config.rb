@@ -1,7 +1,7 @@
 class PolConfig
   include Singleton
 
-  attr_accessor :comp_locations, :comp_available, :version
+  attr_accessor :maps_api_key, :comp_locations, :comp_available, :version
 
   def initialize
     @version = '2009'
@@ -14,6 +14,8 @@ class PolConfig
       'left-box' => [ CompText, CompImage, CompVideo ],
       'right-box' => [ CompText, CompImage, CompGallery ]
     }
+
+    @maps_api_key = ''
   end
 
 end

@@ -17,11 +17,37 @@ git submodule update
 
 ./vendor/plugin/pol/sync.sh
 
+# environment.rb
 
+  # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+  config.i18n.default_locale = :de
+  
+  # caching
+  config.action_controller.page_cache_directory = RAILS_ROOT + "/public/cache/"
+  config.active_record.observers = :page_sweeper, :comp_page_sweeper
+end
+
+# environments/test.rb
+
+config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+config.gem "webrat", :version => ">=0.4.3"
+config.gem "mocha"
+
+# routes.rb
   map.connect '/', :controller => 'pol', :action => 'index'
   map.connect '/index', :controller => 'pol', :action => 'index'
   map.connect '/:id.js', :controller => 'pol',
                          :action => 'replace_comp'
   map.connect '/:permalink', :controller => 'pol', :action => 'show'
+
+rm public/index.html
+
+# configure pol: /config/initializers/pol.rb
+pol_cfg.comp_available = {
+  'top-box' => [ ],
+  'bottom-box' => [ ],
+  'left-box' => [ CompText, CompImage, CompVideo ],
+  'right-box' => [ CompText, CompImage, CompGallery ]
+}
 
 
