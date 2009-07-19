@@ -51,3 +51,8 @@ pol_cfg.comp_available = {
 }
 
 
+
+
+# capify
+capify .
+copy config/deploy* from other pol project
