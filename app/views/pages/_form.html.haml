@@ -1,4 +1,4 @@
--form_for [@page.parent, @page], :html => { :multipart => true }  do |f|
+-form_for [@page.parent, @page], :builder => SemanticFormBuilder, :html => { :multipart => true }  do |f|
   - field_set_tag "" do
     != f.text_field :title, :label => 'Navigationstitel', :help => 'Kurztext fuer die Navigation'
     != f.text_field :desc, :label => 'Seitentitel', :help => 'Langer Titel auf Seiten'
@@ -10,5 +10,9 @@
       != image_tag @page.icon.url
     != f.check_box :hidden, :label => 'Unterseite', :help => 'Die Seite taucht nicht in der Navigation auf. Sie ist ueber ein "Blaettern"-Link auf der Oberseite erreichbar'
 
-    != f.submit('Save')
+    != f.submit('Speichern')
+
+-form_for @page, :html => { :method => :delete }  do |f|
+  - field_set_tag "" do
+    != f.submit 'Seite loeschen', :confirm => 'This will delete all subpages and contents. Are you sure?'
 

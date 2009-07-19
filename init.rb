@@ -1,4 +1,6 @@
 require 'RedCloth'
+require 'video_thumbnail'
+require 'pol_config'
 
 # do reload with each request in development mode
 if 'development' == RAILS_ENV
@@ -6,5 +8,3 @@ if 'development' == RAILS_ENV
     path.match File.dirname(__FILE__)
   end
 end
-
-

@@ -1,5 +1,7 @@
 class Mailer < ActionMailer::Base
 
+  MAIL_RECIPIENT = 'pol@panter.ch'
+
   def contact(c)
     
     subject    "Kontaktanfrage"

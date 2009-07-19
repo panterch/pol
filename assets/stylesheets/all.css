@@ -436,4 +436,16 @@ span.gallery-view-next{
   padding: 0;
 }
 
+.new_comp_links {
+  float: left;
+  padding: 10px;
+}
+
+.new_comp_links ul {
+  padding-left: 10px;
+}
+
+
+
+
 

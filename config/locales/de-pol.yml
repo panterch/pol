@@ -1,0 +1,20 @@
+de:
+  pol:
+    site: pol
+    password: PunktGelb
+    email: "pol@panter.ch"
+    ga_key:
+    left-box: Linke Box
+    right-box: Rechte Box
+
+  activerecord:
+    models:
+      contact: Kontaktformular
+      comp_text: Textbaustein
+      comp_image: Bild mit Text
+      comp_video: Video
+      comp_gallery: Bilder Gallery
+    attributes:
+      contact:
+        from: Absender
+        body: Nachrichttext

@@ -15,8 +15,7 @@ git submodule add cat:/crypt/git/pol.git vendor/plugins/pol
 git submodule init
 git submodule update
 
-rsync -ruv vendor/plugins/pol/db/migrate db
-rsync -ruv vendor/plugins/pol/assets/ public
+./vendor/plugin/pol/sync.sh
 
 
   map.connect '/', :controller => 'pol', :action => 'index'
@@ -25,7 +24,4 @@ rsync -ruv vendor/plugins/pol/assets/ public
                          :action => 'replace_comp'
   map.connect '/:permalink', :controller => 'pol', :action => 'show'
 
-
-# environments/development.rb
-config.reload_plugins = true
 

@@ -24,5 +24,12 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/exception_test', :controller => 'exception_test',
                                  :action => 'error'
 
+  # you may add theses links to your applications routes.rb
+  # map.connect '/', :controller => 'pol', :action => 'index'
+  # map.connect '/index', :controller => 'pol', :action => 'index'
+  # map.connect '/:id.js', :controller => 'pol',
+  #                        :action => 'replace_comp'
+  # map.connect '/:permalink', :controller => 'pol', :action => 'show'
+
 
 end
