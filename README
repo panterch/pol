@@ -1,6 +1,8 @@
 sudo gem install RedCloth
 sudo gem install haml
 
+rails dein_neues_pol_cmd
+
 ./script/plugin install git://github.com/rails/acts_as_list.git
 ./script/plugin install git://github.com/rails/acts_as_tree.git
 ./script/plugin install git://github.com/rails/exception_notification.git
@@ -11,7 +13,9 @@ sudo gem install haml
 
 haml --rails .
 
-git submodule add cat:/crypt/git/pol.git vendor/plugins/pol
+# zuerst einchecken auf cat (sonst geht der rel. submodule path unten nicht)
+
+git submodule add ../pol.git vendor/plugins/pol
 git submodule init
 git submodule update
 
