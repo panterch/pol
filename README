@@ -13,15 +13,26 @@ rails dein_neues_pol_cmd
 
 haml --rails .
 
-# zuerst einchecken auf cat (sonst geht der rel. submodule path unten nicht)
+rake rails:freeze:gems
 
+# zuerst einchecken auf cat (sonst geht der rel. submodule path unten nicht)
+git init
+# .gitignore file machen, auf Server das git repo anlegen
+git add .
+git commit -a -m 'initial checkin'
+git remote add origin seb@cat:/crypt/git/ -- < hier dein repo
+git push origin master
+
+
+# git submodule setup
 git submodule add ../pol.git vendor/plugins/pol
 git submodule init
 git submodule update
 
-./vendor/plugin/pol/sync.sh
+# setup pol
+./vendor/plugins/pol/sync.sh
 
-# environment.rb
+# environment.rb anpassen
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   config.i18n.default_locale = :de
@@ -33,7 +44,7 @@ end
 
 # environments/test.rb
 
-config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+config.gem "thoughtbot-factory_girl", :lib => "factory_girl"
 config.gem "webrat", :version => ">=0.4.3"
 config.gem "mocha"
 
@@ -60,3 +71,26 @@ pol_cfg.comp_available = {
 # capify
 capify .
 copy config/deploy* from other pol project
+adapt config/deploy.rb
+
+Dein SSH Key auf den Server kopieren:
+ssh-copy-id XXXXX@dalitz.dreamhost.com
+
+Auf dem Server im App Verzeichnis:
+mkdir -p releases shared/backup shared/config shared/log shared/system
+
+shared/config/database.yml anlegen:
+production:
+  adapter: mysql
+  database: 
+  username: 
+  password: 
+  host: mysql.panter.ch
+
+Backconnect vom Server auf cat machen:
+ssh 62.12.171.90
+
+
+Deployen:
+cap deploy:cold
+
