@@ -1,11 +1,8 @@
 class CompImage < Comp
+
+  puts 'loading compimage'
   
-  has_attached_file :media, :styles => { :'top-box' => "740",
-                                         :'bottom-box' => "740",
-                                         :'left-box' => "490", 
-                                         :'right-box' => "240",
-                                         :'gallery-thumbnail' => "75",
-                                         :'lightbox-thumbnail' => "115x70#" }
+  has_attached_file :media, :styles => pol_cfg.comp_image_styles
 
   validates_attachment_presence :media
   validates_attachment_content_type :media,
