@@ -88,6 +88,7 @@ production:
   host: mysql.panter.ch
 
 gem instal RedCloth
+gem instal haml
 
 Backconnect vom Server auf cat machen:
 ssh 62.12.171.90

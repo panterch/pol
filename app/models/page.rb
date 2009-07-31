@@ -37,6 +37,11 @@ class Page < ActiveRecord::Base
     ancestors.reverse + [self]
   end
 
+  def comps_styled(style)
+    comps.find(:all, :order => :position, :conditions =>
+               {:style_class => style, :parent_id => nil })
+  end
+
   def comps_left
     comps_styled('left-box')
   end
@@ -64,11 +69,6 @@ class Page < ActiveRecord::Base
   end
 
 protected
-
-  def comps_styled(style)
-    comps.find(:all, :order => :position, :conditions =>
-               {:style_class => style, :parent_id => nil })
-  end
 
 
 end
