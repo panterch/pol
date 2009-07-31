@@ -1,7 +1,4 @@
 class CompImage < Comp
-
-  puts 'loading compimage'
-  
   has_attached_file :media, :styles => pol_cfg.comp_image_styles
 
   validates_attachment_presence :media
