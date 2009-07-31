@@ -87,10 +87,12 @@ production:
   password: 
   host: mysql.panter.ch
 
+gem instal RedCloth
+
 Backconnect vom Server auf cat machen:
 ssh 62.12.171.90
 
 
 Deployen:
-cap deploy:cold
+cap deploy:migrate
 

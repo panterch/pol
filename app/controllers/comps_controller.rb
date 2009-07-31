@@ -1,6 +1,4 @@
-class CompsController < ApplicationController
-  helper :pol
-  layout 'pol_backend'
+class CompsController < PolBackendController
 
   before_filter :load_page
   before_filter :load_comp, :except => [:new, :create]

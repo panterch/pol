@@ -2,7 +2,7 @@ class PolConfig
   include Singleton
 
   attr_accessor :maps_api_key, :comp_locations, :comp_available, :version,
-                :comp_image_styles
+                :comp_image_styles, :password
 
   def initialize
     #
@@ -28,6 +28,8 @@ class PolConfig
                            :'lightbox-thumbnail' => "115x70#" }
 
     @maps_api_key = ''
+
+    @password = 'helvetia'
   end
 
 end

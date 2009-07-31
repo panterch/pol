@@ -1,9 +1,10 @@
 de:
   pol:
     site: pol
-    password: PunktGelb
     email: "pol@panter.ch"
     ga_key:
+    top-box: Obere Box
+    bottom-box: Untere Box
     left-box: Linke Box
     right-box: Rechte Box
 

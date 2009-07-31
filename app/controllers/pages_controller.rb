@@ -1,6 +1,4 @@
-class PagesController < ApplicationController
-  helper :pol
-  layout 'pol_backend'
+class PagesController < PolBackendController
   resource_controller
 
   create.wants.html { redirect_to edit_page_url(object) }
