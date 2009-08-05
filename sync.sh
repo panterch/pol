@@ -1,3 +1,4 @@
+#!/bin/sh
 if [ ! -d 'vendor/plugins/pol' ]
 then
   echo 'please execute this script in RAILS_ROOT'
