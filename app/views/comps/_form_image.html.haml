@@ -3,7 +3,9 @@
   - if (form_image.object.media.file? && !form_image.object.media.dirty?)
     .text-field
       != form_image.label :media, 'Image Preview'
-      != image_tag form_image.object.media.url(:'right-box')
+      != image_tag form_image.object.media.url(form_image.object.style_class)
   != form_image.file_field :media, :required => true, :label => 'Bilddatei', :help => 'Heraufgeladene Bilder werden automatisch auf die richtige Groesse umgerechnet. Erlaubte Formate: jpeg and png'
   != form_image.text_area :content, :label => 'Legende zum Bild', :help => 'Kann formatiert werden'
   != form_image.submit('Save')
+
+

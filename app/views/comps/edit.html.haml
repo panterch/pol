@@ -1,2 +1,2 @@
--form_for(:comp, @comp, :url => { :action => 'update' }, :html => { :multipart => true, :method => :put }) do |form|
+-form_for(:comp, @comp, :url => { :action => 'update' }, :html => { :multipart => true, :method => :put }, :builder => SemanticFormBuilder) do |form|
   != render_form_partial(form)

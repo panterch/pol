@@ -17,16 +17,7 @@
 
   %hr
 
-  %fieldset
-    %legend Neuer Inhalt hinzufuegen
-    -pol_cfg.comp_locations.each do |style_class|
-      .new_comp_links
-        %p=t(style_class, :scope => :pol)
-        %ul
-          -pol_cfg.comp_available[style_class].each do |comp_name|
-            %li
-              != link_to t('activerecord.models.'+comp_name.underscore), new_page_comp_url(@page, :type => comp_name, :style_class => style_class )
-
+  != render :partial => 'new_comp_links'
 
 
 

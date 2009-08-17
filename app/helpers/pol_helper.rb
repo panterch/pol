@@ -1,5 +1,7 @@
 module PolHelper
 
+  RAILS_DEFAULT_LOGGER.warn('POL HELPER LOADED')
+
   def page_link(page)
     permalink page.title, page, :class => page.style_class
   end
@@ -103,66 +105,70 @@ module PolHelper
     # delete) and some are more suitable for its parent (like move).
     main = comp.parent || comp
     content  = link_to '', edit_page_comp_path(comp.page.id, comp),
-               :class => 'icon edit', :title => 'Bearbeiten'
+               :class => 'policon edit', :title => 'Bearbeiten'
     content += link_to '', page_comp_path(comp.page.id, comp),
                :confirm => "Are you sure?", :method => :delete,
-               :class => 'icon delete', :title => 'Loeschen'
+               :class => 'policon delete', :title => 'Loeschen'
     content += link_to '', up_page_comp_path(main.page.id, main),
-               :method => :put, :class => 'icon up',
+               :method => :put, :class => 'policon up',
                :title => 'Nach oben verschieben'
     content += link_to '', down_page_comp_path(main.page.id, main),
-               :method => :put, :class => 'icon down',
+               :method => :put, :class => 'policon down',
                :title => 'Nach unten verschieben'
-    if main.pageable?
-      content += link_to '',
-       new_page_comp_comp_path(main.page.id, main, :type => 'CompImage'),
-       :class => 'icon image', :title => 'Neue Bild Unterseite...'
-    end
-    if main.pageable? && 'left-box' == main.style_class
-      content += link_to '',
-       new_page_comp_comp_path(main.page.id, main, :type => 'CompVideo'),
-       :class => 'icon video', :title => 'Neue Video Unterseite...'
-    end
-    if main.type.to_s == 'CompGallery'
-      content += link_to '',
-        new_page_comp_comp_path(main.page.id, main, :type => 'CompImage'),
-         :class => 'icon image', :title => 'Neues Bild'
-    end
 
-    return content_tag :p, content,
-           :style => 'height: 24px; border-top: 1px solid'
+# TODO: reintegrate pageable concept more flexible into pol
+#
+#    if main.pageable?
+#      content += link_to '',
+#       new_page_comp_comp_path(main.page.id, main, :type => 'CompImage'),
+#       :class => 'icon image', :title => 'Neue Bild Unterseite...'
+#    end
+#    if main.pageable? && 'left-box' == main.style_class
+#      content += link_to '',
+#       new_page_comp_comp_path(main.page.id, main, :type => 'CompVideo'),
+#       :class => 'icon video', :title => 'Neue Video Unterseite...'
+#    end
+#    if main.type.to_s == 'CompGallery'
+#      content += link_to '',
+#        new_page_comp_comp_path(main.page.id, main, :type => 'CompImage'),
+#         :class => 'icon image', :title => 'Neues Bild'
+#    end
+
+    content += "#{comp.class.human_name} / #{I18n.t(comp.style_class, :scope => :pol)}"
+
+    return content_tag :div, content, :class => 'comp_control clearfix'
   end
   
   def render_gallery_controls(gallery_comp, image_comp)
     content = link_to '', up_page_comp_path(gallery_comp.page.id, image_comp),
-               :method => :put, :class => 'icon up',
+               :method => :put, :class => 'policon up',
                :title => 'Nach oben verschieben'
     content += link_to '', down_page_comp_path(gallery_comp.page.id, image_comp),
-               :method => :put, :class => 'icon down',
+               :method => :put, :class => 'policon down',
                :title => 'Nach unten verschieben'
     content += link_to '', edit_page_comp_path(gallery_comp.page.id, image_comp),
-                          :class => 'icon edit', :title => 'Bearbeiten'
+                          :class => 'policon edit', :title => 'Bearbeiten'
     content += link_to '', page_comp_path(gallery_comp.page.id, image_comp),
                :confirm => "Are you sure?", :method => :delete,
-               :class => 'icon delete', :title => 'Loeschen'
+               :class => 'policon delete', :title => 'Loeschen'
   end
   
   def render_map_controls(comp)
     content = link_to '', new_page_comp_comp_path(comp.page.id, comp, 
                           :type => 'CompText', :style_class => 'left-box'),
-                          :class => 'icon texticon', :title => 'Text',
+                          :class => 'policon texticon', :title => 'Text',
                           :onclick => 'return granat.maps.editSubComp(this);'
     content += link_to '', new_page_comp_comp_path(comp.page.id, comp, 
                           :type => 'CompImage', :style_class => 'left-box'),
-                          :class => 'icon image', :title => 'Bild',
+                          :class => 'policon image', :title => 'Bild',
                           :onclick => 'return granat.maps.editSubComp(this);'
     content += link_to '', new_page_comp_comp_path(comp.page.id, comp, 
                           :type => 'CompVideo', :style_class => 'left-box'),
-                          :class => 'icon video', :title => 'Video',
+                          :class => 'policon video', :title => 'Video',
                           :onclick => 'return granat.maps.editSubComp(this);'    
     content += link_to '', new_page_comp_comp_path(comp.page.id, comp, 
                           :type => 'CompRaw', :style_class => 'left-box'),
-                          :class => 'icon html', :title => 'HTML',
+                          :class => 'policon html', :title => 'HTML',
                           :onclick => 'return granat.maps.editSubComp(this);'
                           
     return content_tag :p, content,
