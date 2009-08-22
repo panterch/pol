@@ -55,14 +55,11 @@ function edit_page_content() {
   return false;
 }
 
-function galleryShowEntry(index)
+function galleryShowEntry(id)
 {
-  var images = $$('.gallery-view-image');
-  for(var i = 0; i < images.length; i++)
-  {
-    $('gallery-view-image-' + i).hide();
-    $('gallery-view-text-' + i).hide();
-  }
-  $('gallery-view-image-' + index).show();
-  $('gallery-view-text-' + index).show();  
+  $$('.gallery-view-image').each( function(comp) {
+    comp.hide();
+  });
+  $('gallery-view-image-' + id).show();
 }
+

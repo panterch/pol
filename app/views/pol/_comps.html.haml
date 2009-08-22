@@ -2,9 +2,3 @@
   %div{:class => comp_style}
     - @page.comps_styled(comp_style).each do |comp|
       != render_show_partial(comp)
-
-    - if comp_style == 'left-box'
-      -unless @page.comp_gallery.nil?
-        != render_gallery_view(@page)
-
-

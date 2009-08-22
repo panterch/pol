@@ -2,7 +2,9 @@ class PolConfig
   include Singleton
 
   attr_accessor :maps_api_key, :comp_locations, :comp_available, :version,
-                :comp_image_styles, :password
+                :comp_image_styles, :password,
+                :comp_gallery_control_style,
+                :comp_gallery_view_style
 
   def initialize
     #
@@ -20,6 +22,7 @@ class PolConfig
       'right-box' => %w( CompText CompImage CompVideo )
     }
 
+    # which thumbs to compute for images
     @comp_image_styles =  { :'top-box' => "740",
                            :'bottom-box' => "740",
                            :'left-box' => "490", 
@@ -27,8 +30,13 @@ class PolConfig
                            :'gallery-thumbnail' => "75",
                            :'lightbox-thumbnail' => "115x70#" }
 
+    # where to render gallery control and view
+    @comp_gallery_control_style = 'right-box'
+    @comp_gallery_view_style    = 'left-box'
+
     @maps_api_key = ''
 
+    # password for the admin interface
     @password = 'helvetia'
   end
 

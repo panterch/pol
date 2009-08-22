@@ -13,9 +13,33 @@ class Comp < ActiveRecord::Base
     clazz.new(attrs)
   end
 
+  # should there be rendered controls for subcomponents?
+  def allowed_children_comps
+    []
+  end
+
   # component supports paging
   def pageable?
     false
+  end
+
+  # this determines if the component should be rendered or not. normally only
+  # the parent components get rendered directly, children are rendered by their
+  # parents.
+  def visible?
+    parent.nil?
+  end
+
+  def destroyable?
+    true
+  end
+
+  def editable?
+    true
+  end
+
+  def moveable?
+    true
   end
   
 end

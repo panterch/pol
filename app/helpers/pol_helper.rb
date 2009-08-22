@@ -102,35 +102,30 @@ module PolHelper
     # for subcomponent some actions match on the component himself (like
     # delete) and some are more suitable for its parent (like move).
     main = comp.parent || comp
-    content  = link_to '', edit_page_comp_path(comp.page.id, comp),
-               :class => 'policon edit', :title => 'Bearbeiten'
-    content += link_to '', page_comp_path(comp.page.id, comp),
-               :confirm => "Are you sure?", :method => :delete,
-               :class => 'policon delete', :title => 'Loeschen'
-    content += link_to '', up_page_comp_path(main.page.id, main),
-               :method => :put, :class => 'policon up',
-               :title => 'Nach oben verschieben'
-    content += link_to '', down_page_comp_path(main.page.id, main),
-               :method => :put, :class => 'policon down',
-               :title => 'Nach unten verschieben'
+    content  = ''
+    if (comp.editable?)
+      content  = link_to '', edit_page_comp_path(comp.page.id, comp),
+                 :class => 'policon edit', :title => 'Bearbeiten'
+    end
+    if (comp.destroyable?)
+      content += link_to '', page_comp_path(comp.page.id, comp),
+                 :confirm => "Are you sure?", :method => :delete,
+                 :class => 'policon delete', :title => 'Loeschen'
+    end
+    if (comp.moveable?)
+      content += link_to '', up_page_comp_path(main.page.id, main),
+                 :method => :put, :class => 'policon up',
+                 :title => 'Nach oben verschieben'
+      content += link_to '', down_page_comp_path(main.page.id, main),
+                 :method => :put, :class => 'policon down',
+                 :title => 'Nach unten verschieben'
+    end
 
-# TODO: reintegrate pageable concept more flexible into pol
-#
-#    if main.pageable?
-#      content += link_to '',
-#       new_page_comp_comp_path(main.page.id, main, :type => 'CompImage'),
-#       :class => 'icon image', :title => 'Neue Bild Unterseite...'
-#    end
-#    if main.pageable? && 'left-box' == main.style_class
-#      content += link_to '',
-#       new_page_comp_comp_path(main.page.id, main, :type => 'CompVideo'),
-#       :class => 'icon video', :title => 'Neue Video Unterseite...'
-#    end
-#    if main.type.to_s == 'CompGallery'
-#      content += link_to '',
-#        new_page_comp_comp_path(main.page.id, main, :type => 'CompImage'),
-#         :class => 'icon image', :title => 'Neues Bild'
-#    end
+    comp.allowed_children_comps.each do |comp_type|
+      content += link_to '',
+        new_page_comp_comp_path(comp.page.id, comp, :type => comp_type),
+        :class => 'icon '+comp_type
+    end
 
     content += content_tag :span do
       "#{comp.class.human_name} / #{I18n.t(comp.style_class, :scope => :pol)}"
@@ -295,11 +290,5 @@ module PolHelper
     end
     content += render_subcomps_reg(child_comps)
   end
-  
-  def render_gallery_view(page)
-    gallery = page.comp_gallery
-    render :partial => 'comps/gallery_view', :locals => { :gallery => gallery }
-  end
-  
   
 end

@@ -38,8 +38,9 @@ class Page < ActiveRecord::Base
   end
 
   def comps_styled(style)
-    comps.find(:all, :order => :position, :conditions =>
-               {:style_class => style, :parent_id => nil })
+    comps.find(:all, :order => :position).select do |comp|
+      comp.style_class == style && comp.visible?
+    end
   end
 
   def comps_left
