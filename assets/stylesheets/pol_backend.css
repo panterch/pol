@@ -1,4 +1,25 @@
-#header div.nav {
+#.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+header div.nav {
   background: inherit;
   width: 100%;
   overflow: auto; }
@@ -112,5 +133,18 @@ div.subcomps {
 div.subcomp {
   border: 1px solid #909090;
   float: none;
+}
+
+#new_comp_links {
+  clear: both;
+  width: auto;
+}
+
+#new_comp_links > div.left-box {
+  width: 350px;
+}
+
+#new_comp_links > div.right-box {
+  width: 250px;
 }
   

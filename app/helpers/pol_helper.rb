@@ -1,7 +1,5 @@
 module PolHelper
 
-  RAILS_DEFAULT_LOGGER.warn('POL HELPER LOADED')
-
   def page_link(page)
     permalink page.title, page, :class => page.style_class
   end
@@ -134,7 +132,9 @@ module PolHelper
 #         :class => 'icon image', :title => 'Neues Bild'
 #    end
 
-    content += "#{comp.class.human_name} / #{I18n.t(comp.style_class, :scope => :pol)}"
+    content += content_tag :span do
+      "#{comp.class.human_name} / #{I18n.t(comp.style_class, :scope => :pol)}"
+    end
 
     return content_tag :div, content, :class => 'comp_control clearfix'
   end
