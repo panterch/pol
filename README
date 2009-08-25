@@ -25,7 +25,7 @@ git push origin master
 
 
 # git submodule setup
-git submodule add ../pol.git vendor/plugins/pol
+git submodule add git@62.12.171.90:pol.git vendor/plugins/pol
 git submodule init
 git submodule update
 
@@ -66,12 +66,24 @@ pol_cfg.comp_available = {
 }
 
 
-
-
 # capify
 capify .
 copy config/deploy* from other pol project
 adapt config/deploy.rb
+
+# htaccess machen
+# public/.htaccess
+RewriteEngine On
+
+# Rewrite index to check for static
+RewriteRule ^$ index
+
+# checks cache directory for already cached pages
+RewriteCond %{REQUEST_URI} ^/[^/]*$
+RewriteCond %{DOCUMENT_ROOT}/cache%{REQUEST_URI}.html -f
+RewriteRule ^([^.]+)$ cache/%{REQUEST_URI}.html [L]
+
+
 
 Dein SSH Key auf den Server kopieren:
 ssh-copy-id XXXXX@dalitz.dreamhost.com
