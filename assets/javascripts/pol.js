@@ -1,15 +1,3 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
-
-
-
-Event.observe(window, 'load', function() {
-  // seb this broke granat.panter.ch
-	// loadMap();
-	/*GEvent.addListener(window, 'init', function() {
-    loadMap();
-  })*/
-});
 
 function register_video(id) {
   // Event.observe(window, 'load', function() {
@@ -29,8 +17,6 @@ function register_image(url) {
     });
   }
 }
-
-
 
 function replace_comp(hide, show) {
   $('comp_'+hide).hide();

@@ -1,4 +1,7 @@
 - field_set_tag "Textkomponente bearbeiten" do
   != render :partial => 'comps/form_common', :object => form_text
-  != form_text.text_area :content, :required => true, :label => 'Inhalt', :help => (link_to 'Syntax', 'http://hobix.com/textile/', :popup => true)
-  != form_text.submit('Save')
+  .text_field
+    != form_text.label :content, 'Inhalt (kann formatiert werden)'
+    != form_text.text_area :content
+  .buttons
+    != form_text.submit('Save')

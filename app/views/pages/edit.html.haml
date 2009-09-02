@@ -1,4 +1,4 @@
-%h2= "Seite #{@page.title} bearbeiten"
+%h2= "Seite «#{@page.title}» bearbeiten"
 
 #page_control
   %a.control-tab{ :id => 'page_control_tab_attribute', :href => '#', :onclick => "return edit_page_attribute();" }
@@ -9,13 +9,10 @@
 #page_form{ :style => 'display: none;' }
   != render :partial => 'pages/form'
 
-
-#page_content{ :style => '' }
-
-  != render :partial => 'pol/comps'
-
+#page_content{ }
+  - unless @page.comps.empty?
+    %fieldset#preview
+      %legend Bisher erfasste Komponenten (Vorschau)
+      != render :partial => 'pol/comps'
 
   != render :partial => 'new_comp_links'
-
-
-

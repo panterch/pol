@@ -9,7 +9,6 @@ rails dein_neues_pol_cmd
 ./script/plugin install git://github.com/thoughtbot/paperclip.git
 ./script/plugin install git://github.com/technoweenie/permalink_fu.git
 ./script/plugin install git://github.com/giraffesoft/resource_controller.git
-./script/plugin install git://github.com/rubypond/semantic_form_builder.git
 
 haml --rails .
 
@@ -20,7 +19,7 @@ git init
 # .gitignore file machen, auf Server das git repo anlegen
 git add .
 git commit -a -m 'initial checkin'
-git remote add origin seb@cat:/crypt/git/ -- < hier dein repo
+git remote add origin git@cat:dein_repo.git -- < hier dein repo
 git push origin master
 
 
@@ -58,12 +57,13 @@ config.gem "mocha"
 rm public/index.html
 
 # configure pol: /config/initializers/pol.rb
+pol_cfg.comp_locations = [ 'left-box', 'right-box' ]
 pol_cfg.comp_available = {
-  'top-box' => [ ],
-  'bottom-box' => [ ],
-  'left-box' => [ CompText, CompImage, CompVideo ],
-  'right-box' => [ CompText, CompImage, CompGallery ]
+  'left-box' => %w( CompText CompImage ),
+  'right-box' => %w( CompText CompImage CompGallery  )
 }
+pol_cfg.password = 'XXXX'
+
 
 
 # capify

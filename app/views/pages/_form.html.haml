@@ -1,18 +1,20 @@
--form_for [@page.parent, @page], :builder => SemanticFormBuilder, :html => { :multipart => true }  do |f|
-  - field_set_tag "" do
-    != f.text_field :title, :label => 'Navigationstitel', :help => 'Kurztext fuer die Navigation'
-    != f.text_field :desc, :label => 'Seitentitel', :help => 'Langer Titel auf Seiten'
-    != f.text_field :help, :label => 'Hilfstext', :help => 'Hilfetext ueber Bildnavigation (nur fuer die 4. Ebene in Zusammenhang mit Bildnavigation)'
-    != f.text_field :permalink, :label => 'Permalink', :help => 'Titel fuer Links. Wird generiert wenn leer. Macht die Seite attraktiver fuer Suchmaschinen'
-    != f.file_field :icon, :label => 'Menu icon', :help => 'Bild fuer die 5.  Navigationsstufe'
-    .file-field
-      != f.label :icon, 'Icon Vorschau'
-      != image_tag @page.icon.url
-    != f.check_box :hidden, :label => 'Unterseite', :help => 'Die Seite taucht nicht in der Navigation auf. Sie ist ueber ein "Blaettern"-Link auf der Oberseite erreichbar'
-
-    != f.submit('Speichern')
+-form_for [@page.parent, @page], :html => { :multipart => true }  do |f|
+  - field_set_tag "Seiten Eigenschaften" do
+    .text_field
+      != f.label :title, 'Navigationstitel'
+      != f.text_field :title
+    .text_field
+      != f.label :permalink, 'Permalink (wird automatisch generiert wenn leer)'
+      != f.text_field :permalink
+    .file_field
+      != f.label :icon, 'Ikone fuer Menu'
+      != f.file_field :icon
+      - if @page.icon.file?
+        != image_tag @page.icon.url
+    .buttons
+      != f.submit('Speichern')
 
 -form_for @page, :html => { :method => :delete }  do |f|
-  - field_set_tag "" do
-    != f.submit 'Seite loeschen', :confirm => 'This will delete all subpages and contents. Are you sure?'
+  - field_set_tag "Seite loeschen" do
+    != f.submit 'Seite loeschen', :confirm => 'Dies loescht die Seite und alle ihre Unterseiten. Weiterfahren?'
 

@@ -2,20 +2,17 @@
 %html{ :xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => I18n.locale, :lang => I18n.locale}
   %head
     != render :partial => 'layouts/html_head'
-    != stylesheet_link_tag 'application' 
-    != stylesheet_link_tag 'semantic_forms' 
     != stylesheet_link_tag 'pol_backend' 
 
   %body.trans{ :style => 'background-image: none' }
-    #container
-      #header
+    #backend
+      #backend-header
         %h1 
-          /!= image_tag('logo.png')
           POL Content Management System
-        .nav
+        %fieldset.nav.clearfix
+          %legend Seitenauswahl
           != render_nav(@page)
-      #content-area
-        .content
-          != flash[:notice]
-          != flash[:error]
-          != yield
+      #backend-content-area
+        != flash[:notice]
+        != flash[:error]
+        != yield

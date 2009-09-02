@@ -1,16 +1,19 @@
 .leaves
   %p!= "Navigation Ebene #{level}"
   -id = parent ? "#{parent.id}" : 'roots'
-  %ul{ :id => parent ? "#{parent.id}" : 'roots' }
-    -pages.each do |page|
-      %li{ :id => "page_#{page.id}", :class => (page == active) ? 'active' : '' }
-        -if parent
-          .icon.drag
-        != link_to '', '/'+page.permalink, :popup => true, :class => 'icon preview' 
-        != link_to page.title, edit_page_path(page)
-    -if parent
-      != sortable_element(id, :handle => 'drag', :url => order_page_path(id))
+  - unless pages.empty?
+    %ul{ :id => parent ? "#{parent.id}" : 'roots' }
+      -pages.each do |page|
+        %li{ :id => "page_#{page.id}", :class => (page == active) ? 'active' : '' }
+          -if parent
+            .policon.drag
+          != link_to '', '/'+page.permalink, :popup => true, :class => 'policon preview' 
+          != link_to page.title, edit_page_path(page)
+      -if parent
+        != sortable_element(id, :handle => 'drag', :url => order_page_path(id))
 
   -if parent
-    %p!= link_to 'add...', new_page_page_path(parent)
+    .new
+      != link_to '', new_page_page_path(parent), :class => 'policon newicon' 
+      != link_to 'Neue Seite anlegen...', new_page_page_path(parent)
 

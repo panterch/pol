@@ -1,4 +1,7 @@
 - field_set_tag "Gallerie bearbeiten" do
   != render :partial => 'comps/form_common', :object => form_gallery
-  != form_gallery.text_area :content, :label => 'Legende zur Gallerie', :help => 'Kann formatiert werden'
-  != form_gallery.submit('Save')
+  .textfield
+    != form_gallery.label :content, 'Legende zur Gallerie (kann formatiert werden, die Bilder koennen auf der Hauptseite heraufgeladen werden)'
+    != form_gallery.text_area :content
+  .buttons
+    != form_gallery.submit('Save')

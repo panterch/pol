@@ -1,9 +1,13 @@
 class Comp < ActiveRecord::Base
   
   acts_as_tree :order => :position
+  # scope visbile components to page and style (they are displayed in their
+  # order on the page) and invisible components additionally to their parent
+  # (the parent is rendered and the children are rendered whitin, in their own
+  # order)
   acts_as_list :scope => 'page_id = #{page_id} '+
      'AND style_class = \'#{style_class}\' '+
-     'AND parent_id #{parent_id.nil? ? \'IS NULL\' : \'= \'+parent_id.to_s}'
+     'AND parent_id #{visible? ? \'IS NULL\' : \'= \'+parent_id.to_s}'
 
   belongs_to :page
 

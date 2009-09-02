@@ -1,33 +1,14 @@
-#.clearfix:after {
-	content: ".";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	line-height: 0;
-	height: 0;
-}
- 
-.clearfix {
-	display: inline-block;
-}
- 
-html[xmlns] .clearfix {
-	display: block;
-}
- 
-* html .clearfix {
-	height: 1%;
+#backend {
+  margin: 1em;
 }
 
-header div.nav {
-  background: inherit;
-  width: 100%;
-  overflow: auto; }
+#backend-content-area {
+  margin-top: 50px;
+}
 
 .nav div.leaves {
-  width: 200px;
   float: left;
-  margin-right: 10px; }
+  margin-right: 20px; }
 
 .nav ul {
   list-style-type: none;
@@ -35,16 +16,15 @@ header div.nav {
   width: auto;
   overflow: auto; }
 
-.nav li {
+.nav li, .nav div.new {
   clear: both;
+  vertical-align: middle;
+  line-height: 22px;
   height: 22px; }
 
 .nav li.active {
-  background-color: #09f; }
-
-.nav li.active a {
-  border: 0;
-  color: white; }
+  border:1px dotted gray;
+}
 
 .nav li a:hover {
   border: 0; }
@@ -69,6 +49,9 @@ header div.nav {
 .delete {
   background: url(../images/16x16/user-trash.png) center no-repeat; }
 
+.newicon {
+  background: url(../images/16x16/document-new.png) center no-repeat; }
+
 .up {
   background: url(../images/16x16/go-up.png) center no-repeat; }
 
@@ -78,7 +61,7 @@ header div.nav {
 .video {
   background: url(../images/16x16/applications-multimedia.png) center no-repeat; }
 
-.image {
+.image, .CompImage {
   background: url(../images/16x16/contact-new.png) center no-repeat; }
   
 .texticon {
@@ -123,6 +106,13 @@ a.control-tab-active{
 #mapinfo span {
   font-size: 0.8em;
   width: 140px;
+}
+
+div.comp {
+  border-left: 1px dotted gray;
+  border-top: 1px dotted gray;
+  padding: 3px;
+  margin-bottom: 4px;
 }
 
 div.subcomps {

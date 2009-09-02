@@ -124,7 +124,7 @@ module PolHelper
     comp.allowed_children_comps.each do |comp_type|
       content += link_to '',
         new_page_comp_comp_path(comp.page.id, comp, :type => comp_type),
-        :class => 'icon '+comp_type
+        :class => 'policon '+comp_type
     end
 
     content += content_tag :span do
