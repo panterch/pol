@@ -3,5 +3,4 @@
     != render :partial => 'comps/form_common', :object => form_file
     != form_file.label :media, 'Datei zum Download (z.B. PDF)'
     != form_file.file_field :media
-  .buttons
-    != form_file.submit('Save')
+  != render :partial => 'comps/form_buttons', :object => form_file

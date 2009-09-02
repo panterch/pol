@@ -1,16 +1,19 @@
 class PolConfig
   include Singleton
 
-  attr_accessor :maps_api_key, :comp_locations, :comp_available, :version,
+  attr_accessor :languages, :version,
+                :comp_locations, :comp_available, 
                 :comp_image_styles, :password,
                 :comp_gallery_control_style,
-                :comp_gallery_view_style
+                :comp_gallery_view_style,
+                :maps_api_key, :ga_api_key
 
   def initialize
     #
     # !!!! don't associate classes here that use pol_cfg in class context -
     # !!!! this will cause a deadlock
     #
+    @languages = %w( de )
     @version = '2009'
 
     # this defines the style classes and which components are available in them
@@ -34,7 +37,9 @@ class PolConfig
     @comp_gallery_control_style = 'right-box'
     @comp_gallery_view_style    = 'left-box'
 
+    # api keys
     @maps_api_key = ''
+    @ga_api_key = nil
 
     # password for the admin interface
     @password = 'helvetia'

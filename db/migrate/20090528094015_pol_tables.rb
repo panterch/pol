@@ -2,7 +2,6 @@ class PolTables < ActiveRecord::Migration
 
   def self.up
     create_table "comps", :force => true do |t|
-      t.text     "content"
       t.integer  "page_id"
       t.string   "type"
       t.integer  "parent_id"
@@ -18,6 +17,7 @@ class PolTables < ActiveRecord::Migration
       t.string   "style_class"
       t.integer  "position"
     end
+    Comp.create_translation_table! :content => :text
 
     create_table "contacts", :force => true do |t|
       t.string   "from"
@@ -50,6 +50,7 @@ class PolTables < ActiveRecord::Migration
 
   def self.down
     drop_table :comps
+    Comp.drop_translation_table!
     drop_table :contacts
     drop_table :pages
   end

@@ -38,4 +38,4 @@
 
           != yield
 
-    != render :partial => 'layouts/ga' if defined?(GA_KEY)
+    != render :partial => 'layouts/ga' unless pol_cfg.ga_api_key.blank?

@@ -1,11 +1,4 @@
 - field_set_tag "Textkomponente bearbeiten" do
   != render :partial => 'comps/form_common', :object => form_text
-  .text_field.clearfix
-    != form_text.label :content, "Inhalt (kann formatiert werden)"
-    - form_text.fields_for :globalize_translations do |trans|
-      .translation{ :style => 'float: left; margin-right: 5px' }
-        != trans.label :content, "Sprache: #{trans.object.locale}"
-        != trans.hidden_field :locale
-        != trans.text_area :content
-  .buttons
-    != form_text.submit('Save')
+  != render :partial => 'comps/form_content', :object => form_text
+  != render :partial => 'comps/form_buttons', :object => form_text

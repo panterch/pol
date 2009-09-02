@@ -6,8 +6,5 @@
     - if (form_image.object.media.file? && !form_image.object.media.dirty?)
       %br
       != image_tag form_image.object.media.url(form_image.object.style_class)
-  .text_field
-    != form_image.label :content, 'Legende zum Bild (kann formatiert werden)'
-    != form_image.text_area :content
-  .buttons
-    != form_image.submit('Save')
+  != render :partial => 'comps/form_content', :object => form_image
+  != render :partial => 'comps/form_buttons', :object => form_image

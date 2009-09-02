@@ -1,7 +1,4 @@
 - field_set_tag "HTML Komponente bearbeiten" do
   != render :partial => 'comps/form_common', :object => form_raw
-  .text_field
-    != form_raw.label :content, 'Der hier eingegebene HTML Code wird 1:1 auf der Seite ausgegeben. Bitte beachten Sie die max. moegliche Breite des Layouts'
-    != form_raw.text_area :content
-  .buttons
-    != form_raw.submit('Save')
+  != render :partial => 'comps/form_content', :object => form_raw
+  != render :partial => 'comps/form_buttons', :object => form_raw
