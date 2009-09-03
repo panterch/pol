@@ -13,6 +13,7 @@
   - unless @page.comps.empty?
     %fieldset#preview
       %legend Bisher erfasste Komponenten (Vorschau)
+      %iframe{ :src => "/#{@page.permalink}.preview", :scrolling => 'auto', :height => '800px', :width => '400px'   } 
       != render :partial => 'pol/comps'
 
   != render :partial => 'new_comp_links'

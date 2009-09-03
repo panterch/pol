@@ -15,6 +15,10 @@ class PolController < ApplicationController
   def show
   end
 
+  def preview
+    render :action => :show, :layout => 'pol_stripped'
+  end
+
   # this is called by wget
   def sitemap
     links = (Page.all.map(&:permalink) + [ 'index' ]).sort
@@ -47,5 +51,6 @@ class PolController < ApplicationController
         @subpage_nav = [ @ancs.last ] + @ancs.last.subpages
       end
     end
+
 
 end
