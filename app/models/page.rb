@@ -1,5 +1,7 @@
 class Page < ActiveRecord::Base
 
+  translates :title, :desc
+
   acts_as_tree :order => :position
   acts_as_list :scope => :parent_id
 
@@ -10,6 +12,8 @@ class Page < ActiveRecord::Base
   has_attached_file :icon, :styles => { :normal => "75x75#" },
                     :default_style => :normal
   has_permalink [:ancestor_titles, :title]
+
+  accepts_nested_attributes_for :globalize_translations
 
   def order_children(ids)
     ids.reverse.each do |c|

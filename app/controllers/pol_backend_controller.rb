@@ -1,4 +1,5 @@
 class PolBackendController < ApplicationController
+  include PolControl
   helper :pol
   layout 'pol_backend'
 
@@ -7,12 +8,6 @@ class PolBackendController < ApplicationController
   helper_method :authenticated?
 
   protected
-
-    def set_locale
-      I18n.locale = session[:locale] if session[:locale]
-      return unless params[:language]
-      I18n.locale = session[:locale] = params[:language]
-    end
 
     def authenticate
       return true if 'test' == RAILS_ENV

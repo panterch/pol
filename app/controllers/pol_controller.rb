@@ -1,8 +1,10 @@
 class PolController < ApplicationController
+  include PolControl
 
   layout 'pol'
   caches_page :show, :index, :replace_comp
 
+  before_filter :set_locale
   before_filter :prepare_page, :except => :replace_comp
   skip_before_filter :authenticate
 
@@ -45,6 +47,5 @@ class PolController < ApplicationController
         @subpage_nav = [ @ancs.last ] + @ancs.last.subpages
       end
     end
-
 
 end

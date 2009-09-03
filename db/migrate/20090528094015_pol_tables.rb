@@ -1,6 +1,25 @@
 class PolTables < ActiveRecord::Migration
 
   def self.up
+    create_table "pages", :force => true do |t|
+      t.integer  "parent_id"
+      t.integer  "position"
+      t.string   "title"
+      t.string   "desc"
+      t.datetime "created_at"
+      t.datetime "updated_at"
+      t.string   "icon_file_name"
+      t.string   "icon_content_type"
+      t.integer  "icon_file_size"
+      t.datetime "icon_updated_at"
+      t.string   "permalink"
+      t.text     "help"
+      t.string   "style_class"
+      t.boolean  "hidden"
+    end
+    add_index "pages", ["permalink"], :name => "index_pages_on_permalink", :unique => true
+    Page.create_translation_table! :title => :string, :desc => :string
+
     create_table "comps", :force => true do |t|
       t.integer  "page_id"
       t.string   "type"
@@ -28,24 +47,6 @@ class PolTables < ActiveRecord::Migration
       t.datetime "updated_at"
     end
 
-    create_table "pages", :force => true do |t|
-      t.integer  "parent_id"
-      t.integer  "position"
-      t.string   "title"
-      t.string   "desc"
-      t.datetime "created_at"
-      t.datetime "updated_at"
-      t.string   "icon_file_name"
-      t.string   "icon_content_type"
-      t.integer  "icon_file_size"
-      t.datetime "icon_updated_at"
-      t.string   "permalink"
-      t.text     "help"
-      t.string   "style_class"
-      t.boolean  "hidden"
-    end
-
-    add_index "pages", ["permalink"], :name => "index_pages_on_permalink", :unique => true
   end
 
   def self.down

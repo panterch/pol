@@ -1,7 +1,7 @@
 class PolConfig
   include Singleton
 
-  attr_accessor :languages, :version,
+  attr_accessor :languages, :version, :max_nav_level,
                 :comp_locations, :comp_available, 
                 :comp_image_styles, :password,
                 :comp_gallery_control_style,
@@ -15,6 +15,7 @@ class PolConfig
     #
     @languages = %w( de )
     @version = '2009'
+    @max_nav_level = 4
 
     # this defines the style classes and which components are available in them
     @comp_locations = [ 'left-box', 'right-box' ]
@@ -43,6 +44,10 @@ class PolConfig
 
     # password for the admin interface
     @password = 'helvetia'
+  end
+
+  def multilang?
+    @languages.length > 1
   end
 
 end

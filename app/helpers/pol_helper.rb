@@ -13,6 +13,14 @@ module PolHelper
     pages.map{ |p| content_tag(:li, page_link(p), :class => activated(p))}.join("\n")
   end
 
+  def language_items()
+    pol_cfg.languages.map do |l|
+      active = (I18n.locale == l) ? 'active' : ''
+      content_tag(:li, permalink(l.upcase[0..0], @page, :locale => l), :class => active)
+
+    end.join("\n")
+  end
+
   def render_subpage_nav(pages)
     content = ''
     
@@ -33,7 +41,10 @@ module PolHelper
   end
 
   def permalink(title, page, params = {})
-    link_to title, "/#{page.permalink}", params
+    locale = params[:locale]
+    locale ||= pol_cfg.multilang? ? "#{I18n.locale}" : ''
+    link = [ page.permalink, locale ].compact.join('.')
+    link_to title, "/#{link}", params
   end
 
 
@@ -223,8 +234,10 @@ module PolHelper
                    :level => level += 1 })
     # 4. render children for existin records
     return content if page.new_record?
-    return content if level > 4
-    return content if level == 1 && Page.root != page
+    return content if level >= pol_cfg.max_nav_level
+    # do not display children nav for roots that are not the first root
+    # to avoid this, explicitly add a child (via migration)
+    return content if level == 1 && page.children.empty?
     content << render(:partial => 'pages/nav',
       :locals => { :parent => page, 
                    :pages => page.children, 
