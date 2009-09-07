@@ -41,9 +41,9 @@ module PolHelper
   end
 
   def permalink(title, page, params = {})
-    locale = params[:locale]
+    locale = params.delete(:locale)
     locale ||= pol_cfg.multilang? ? "#{I18n.locale}" : ''
-    link = [ page.permalink, locale ].compact.join('.')
+    link = [ locale, page.permalink ].compact.join('/')
     link_to title, "/#{link}", params
   end
 

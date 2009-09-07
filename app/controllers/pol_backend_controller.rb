@@ -20,5 +20,15 @@ class PolBackendController < ApplicationController
     def authenticated?
       ActionController::HttpAuthentication::Basic.authorization(request)
     end
+
+    # asserts that translation object for each language are present
+    # this allows a nested form for all translations
+    def globalize_object(model)
+      pol_cfg.languages.each do |lang|
+        next if model.globalize_translations.map(&:locale).include?(lang.to_sym)
+        model.globalize_translations.build({ :locale => lang })
+      end
+    end
+      
   
 end

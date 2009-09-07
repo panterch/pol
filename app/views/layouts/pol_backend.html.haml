@@ -2,24 +2,24 @@
 %html{ :xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => I18n.locale, :lang => I18n.locale}
   %head
     != render :partial => 'layouts/html_head'
+    != stylesheet_link_tag 'all' 
     != stylesheet_link_tag 'pol_backend' 
 
   %body.trans{ :style => 'background-image: none' }
-    #backend
-      #backend-header
-        %h1 
-          POL Content Management System
+    #pol_backend
+      %h1 
+        POL Content Management System
               
-        %fieldset.nav.clearfix
-          %legend Seitenauswahl
-          -if 1<pol_cfg.languages.length
-            .leaves
-              %p Sprachwahl
-              %ul
-                - pol_cfg.languages.each do |lang|
-                  %li{ :class => (I18n.locale == lang ? 'active' : '') }
-                    != link_to lang, :language => lang
-          != render_nav(@page)
+      %fieldset.clearfix
+        %legend Seitenauswahl
+        -if 1<pol_cfg.languages.length
+          .leaves
+            %p Sprachwahl
+            %ul
+              - pol_cfg.languages.each do |lang|
+                %li{ :class => (I18n.locale == lang ? 'active' : '') }
+                  != link_to lang, :language => lang
+        != render_nav(@page)
       #backend-content-area
         != flash[:notice]
         != flash[:error]

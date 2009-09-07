@@ -1,18 +1,17 @@
 class PagesController < PolBackendController
   resource_controller
 
+  index.wants.html { redirect_to edit_page_url(Page.root) }
   create.wants.html { redirect_to edit_page_url(object) }
   update.wants.html { redirect_to edit_page_url(object) }
 
-  def index
-    redirect_to edit_object_url(Page.root)
-  end
+  edit.before { globalize_object(object) }
 
   def order
-    template = params[object.id.to_s].reject { |id| id.blank? }
+    template = params["pages_#{object.id}"].reject { |id| id.blank? }
     object.order_children(template)
     render :update do |page|
-      page.visual_effect :highlight, object.id.to_s
+      page.visual_effect :highlight, "pages_#{object.id}"
     end
   end
 

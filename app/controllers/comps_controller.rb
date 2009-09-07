@@ -12,9 +12,7 @@ class CompsController < PolBackendController
     @comp.lng = params[:lng] || params[:comp] && params[:comp][:lng]
     @comp.level = params[:level] || @parent.try(:level)
     @comp.style_class = params[:style_class] || @parent.try(:style_class)
-    pol_cfg.languages.each do |lang|
-      @comp.globalize_translations.build({ :locale => lang })
-    end
+    globalize_object(@comp)
   end
   
   def create

@@ -1,10 +1,11 @@
-%fieldset#new_comp_links
+%fieldset#new_comp_links.nav
   %legend Neuen Inhalt hinzufuegen
   -pol_cfg.comp_locations.each do |style_class|
-    %div{ :class => style_class }
+    %div{ :class => "#{style_class} leaves" }
       %p=t(style_class, :scope => :pol)
       %ul
         -pol_cfg.comp_available[style_class].each do |comp_name|
           %li
+            %div{ :class => "policon #{comp_name}" }
             != link_to t('activerecord.models.'+comp_name.underscore), new_page_comp_url(@page, :type => comp_name, :style_class => style_class )
 
