@@ -102,6 +102,7 @@ Dein SSH Key auf den Server kopieren:
 ssh-copy-id XXXXX@dalitz.dreamhost.com
 
 Auf dem Server im App Verzeichnis:
+# current verzeichnis loeschen
 mkdir -p releases shared/backup shared/config shared/log shared/system
 
 shared/config/database.yml anlegen:
@@ -122,3 +123,6 @@ ssh 62.12.171.90
 Deployen:
 cap deploy:migrate
 
+
+# Backup einrichten
+# Google analytics einrichten
