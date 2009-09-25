@@ -2,12 +2,14 @@
   - field_set_tag "Seiten Eigenschaften" do
     .text_field.clearfix
       %label Navigationstitel
-      - f.fields_for :globalize_translations do |trans|
-        .translation
-          -if pol_cfg.multilang?
+      -if pol_cfg.multilang?
+        - f.fields_for :globalize_translations do |trans|
+          .translation
             != trans.label :title, "Sprache: #{trans.object.locale}"
             != trans.hidden_field :locale
             != trans.text_field :title
+      -else
+        != f.text_field :title
     .text_field
       != f.label :permalink, 'Permalink (wird automatisch generiert wenn leer)'
       != f.text_field :permalink

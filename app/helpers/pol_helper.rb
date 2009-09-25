@@ -42,7 +42,7 @@ module PolHelper
 
   def permalink(title, page, params = {})
     locale = params.delete(:locale)
-    locale ||= pol_cfg.multilang? ? "#{I18n.locale}" : ''
+    locale ||= pol_cfg.multilang? ? "#{I18n.locale}" : nil
     link = [ locale, page.permalink ].compact.join('/')
     link_to title, "/#{link}", params
   end
@@ -215,6 +215,7 @@ module PolHelper
     return render_path(page.parent, anchestors)
   end
 
+  # renders the backend navigation
   def render_nav(page)
     content = ''
     level = 0
@@ -237,7 +238,9 @@ module PolHelper
     return content if level >= pol_cfg.max_nav_level
     # do not display children nav for roots that are not the first root
     # to avoid this, explicitly add a child (via migration)
-    return content if level == 1 && page.children.empty?
+    # This allows sites on top level without children (typically 'contact',
+    # 'disclaimer' ... )
+    return content if level == 1 && Page.root != page && page.children.empty?
     content << render(:partial => 'pages/nav',
       :locals => { :parent => page, 
                    :pages => page.children, 

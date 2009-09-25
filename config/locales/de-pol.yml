@@ -7,6 +7,8 @@ de:
     bottom-box: Untere Box
     left-box: Linke Box
     right-box: Rechte Box
+    center: Hauptbereich
+    right: Rechte Spalte
 
   activerecord:
     models:

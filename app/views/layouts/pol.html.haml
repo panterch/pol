@@ -14,7 +14,7 @@
           %ul.breadcrumbs
             - @page.ancestors.reverse.each do |a|
               %li
-                != link_to a.title.titleize, "/#{a.permalink}"
+                != permalink a.title.titleize, a
                 &gt;
             %li= @page.title.titleize
         .main
