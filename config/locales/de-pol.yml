@@ -19,6 +19,7 @@ de:
       comp_gallery: Bilder Gallery
       comp_file: Datei Download
       comp_raw: Direkte HTML Eingabe
+      comp_placeholder: Platzhalter (kein Inhalt)
     attributes:
       contact:
         from: Absender
