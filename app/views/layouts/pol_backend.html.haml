@@ -2,10 +2,10 @@
 %html{ :xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => I18n.locale, :lang => I18n.locale}
   %head
     != render :partial => 'layouts/html_head'
-    != stylesheet_link_tag 'all' 
     != stylesheet_link_tag 'pol_backend' 
+    != javascript_include_tag 'pol_backend.js'
 
-  %body.trans{ :style => 'background-image: none' }
+  %body{ :style => 'background-image: none' }
     #pol_backend
       %h1 
         POL Content Management System
