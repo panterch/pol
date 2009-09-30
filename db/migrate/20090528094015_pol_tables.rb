@@ -16,9 +16,10 @@ class PolTables < ActiveRecord::Migration
       t.text     "help"
       t.string   "style_class"
       t.boolean  "hidden"
+      t.string   "title" unless pol_cfg.multilang?
+      t.text     "desc" unless pol_cfg.multilang?
     end
     add_index "pages", ["permalink"], :name => "index_pages_on_permalink", :unique => true
-    Page.create_translation_table! :title => :string, :desc => :string
 
     create_table "comps", :force => true do |t|
       t.integer  "page_id"
@@ -35,8 +36,8 @@ class PolTables < ActiveRecord::Migration
       t.integer  "level"
       t.string   "style_class"
       t.integer  "position"
+      t.text     "content" unless pol_cfg.multilang?
     end
-    Comp.create_translation_table! :content => :text
 
     create_table "contacts", :force => true do |t|
       t.string   "from"
@@ -47,11 +48,15 @@ class PolTables < ActiveRecord::Migration
       t.datetime "updated_at"
     end
 
+    if pol_cfg.multilang?
+      Comp.create_translation_table! :content => :text
+      Page.create_translation_table! :title => :string, :desc => :string
+    end
   end
 
   def self.down
     drop_table :comps
-    Comp.drop_translation_table!
+    Comp.drop_translation_table! if pol_cfg.multilang?
     drop_table :contacts
     drop_table :pages
   end
