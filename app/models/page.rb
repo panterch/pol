@@ -1,6 +1,9 @@
 class Page < ActiveRecord::Base
 
-  translates :title, :desc
+  if pol_cfg.multilang?
+    translates :title, :desc
+    accepts_nested_attributes_for :globalize_translations
+  end
 
   acts_as_tree :order => :position
   acts_as_list :scope => :parent_id
@@ -13,7 +16,6 @@ class Page < ActiveRecord::Base
                     :default_style => :normal
   has_permalink [:ancestor_titles, :title]
 
-  accepts_nested_attributes_for :globalize_translations
 
   def order_children(ids)
     ids.reverse.each do |c|

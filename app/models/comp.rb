@@ -1,7 +1,9 @@
 class Comp < ActiveRecord::Base
 
-  translates :content
-  accepts_nested_attributes_for :globalize_translations
+  if pol_cfg.multilang?
+    translates :content
+    accepts_nested_attributes_for :globalize_translations
+  end
   
   acts_as_tree :order => :position
   # scope visbile components to page and style (they are displayed in their

@@ -24,6 +24,7 @@ class PolBackendController < ApplicationController
     # asserts that translation object for each language are present
     # this allows a nested form for all translations
     def globalize_object(model)
+      return unless pol_cfg.multilang?
       pol_cfg.languages.each do |lang|
         next if model.globalize_translations.map(&:locale).include?(lang.to_sym)
         model.globalize_translations.build({ :locale => lang })
