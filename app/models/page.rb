@@ -10,9 +10,7 @@ class Page < ActiveRecord::Base
 
   has_many :comps, :dependent => :destroy
   
-  # the '#' in the geometry is an improvment by paperclip which will
-  # create square thumbnails that are nicely cropped.
-  has_attached_file :icon, :styles => { :normal => "75x75#" },
+  has_attached_file :icon, :styles => pol_cfg.page_icon_styles,
                     :default_style => :normal
   has_permalink [:ancestor_titles, :title]
 

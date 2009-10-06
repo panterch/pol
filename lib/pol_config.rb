@@ -2,6 +2,7 @@ class PolConfig
   include Singleton
 
   attr_accessor :languages, :version, :max_nav_level,
+                :page_icon_styles,
                 :comp_locations, :comp_available, 
                 :comp_image_styles, :password,
                 :comp_gallery_control_style,
@@ -33,6 +34,9 @@ class PolConfig
                            :'right-box' => "240",
                            :'gallery-thumbnail' => "75",
                            :'lightbox-thumbnail' => "115x70#" }
+
+    # which thumbs to compute for page icons
+    @page_icon_styles =  { :'normal' => "75x75#" }
 
     # where to render gallery control and view
     @comp_gallery_control_style = 'right-box'

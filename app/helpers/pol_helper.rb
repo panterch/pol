@@ -13,6 +13,12 @@ module PolHelper
     pages.map{ |p| content_tag(:li, page_link(p), :class => activated(p))}.join("\n")
   end
 
+  def menu_icons(pages)
+    pages.map do |p|
+      content_tag :li, permalink(image_tag(p.icon.url),p,:class =>activated(p))
+    end.join("\n")
+  end
+
   def language_items()
     pol_cfg.languages.map do |l|
       active = (I18n.locale == l) ? 'active' : ''
