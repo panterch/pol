@@ -5,6 +5,7 @@ class PagesController < PolBackendController
   create.wants.html { redirect_to edit_page_url(object) }
   update.wants.html { redirect_to edit_page_url(object) }
 
+  new_action.before { globalize_object(object) }
   edit.before { globalize_object(object) }
 
   def order
