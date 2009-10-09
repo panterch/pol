@@ -1,0 +1,42 @@
+/* pol gallery demo stylesheet */
+/* you may include this stylesheet by linking or copying it to your applications
+ * stylesheet path and then configure its inclusion using pol_cfg.stylesheets */
+.gallery-box{
+  padding: 2px;
+}
+div.gallery-image {
+  position: relative;
+  float: left;
+  padding: 3px;
+}
+
+div.gallery-box .gallery-image img{
+  display:inline;
+  background-color: #ffffff;
+}
+
+.gallery-control {
+  position: absolute;
+  left: 0px;
+}
+
+.gallery-view{
+  display: inline;
+}
+.gallery-view-image {
+  display: inline;
+}
+.gallery-view-text {
+  text-align: center;
+  background-color: #d0e0f0;
+}
+span.gallery-view-prev{
+  font-size: 12px;
+  float: left;
+  padding: 0 5px;
+}
+span.gallery-view-next{
+  font-size: 12px;
+  float: right;
+  padding: 0 5px;
+}

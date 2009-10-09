@@ -38,7 +38,7 @@ git submodule update
   
   # caching
   config.action_controller.page_cache_directory = RAILS_ROOT + "/public/cache/"
-  config.active_record.observers = :page_sweeper, :comp_page_sweeper
+  config.active_record.observers = :page_sweeper
 end
 
 # environments/test.rb
@@ -49,9 +49,6 @@ config.gem "mocha"
 
 # routes.rb
   map.connect '/', :controller => 'pol', :action => 'index'
-  map.connect '/index', :controller => 'pol', :action => 'index'
-  map.connect '/:id.js', :controller => 'pol',
-                         :action => 'replace_comp'
   map.connect '/:permalink', :controller => 'pol', :action => 'show'
 
 rm public/index.html

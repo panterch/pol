@@ -1,7 +1,7 @@
 %title
   =I18n.t(:site, :scope => :pol)
   = yield :title
-!= stylesheet_link_tag 'all'
+!= stylesheet_link_tag(pol_cfg.stylesheets, :cache => true)
 != javascript_include_tag :defaults, :cache => true
 != yield :head
 %meta{ :name => 'author', :content => 'http://www.panter.ch' }

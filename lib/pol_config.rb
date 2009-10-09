@@ -7,7 +7,8 @@ class PolConfig
                 :comp_image_styles, :password,
                 :comp_gallery_control_style,
                 :comp_gallery_view_style,
-                :maps_api_key, :ga_api_key
+                :maps_api_key, :ga_api_key,
+                :stylesheets
 
   def initialize
     #
@@ -48,6 +49,9 @@ class PolConfig
 
     # password for the admin interface
     @password = 'helvetia'
+
+    # stylesheets used in front- and backend
+    @stylesheets = ['application']
   end
 
   def multilang?

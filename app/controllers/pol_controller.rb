@@ -31,7 +31,7 @@ class PolController < ApplicationController
     def prepare_page
       @root = Page.root
       @page = params[:permalink] ? Page.find_by_permalink(params[:permalink]) :
-                                   @root
+                                   Page.find_by_permalink('index')
       if @page.nil?
         render :file => "#{RAILS_ROOT}/public/404.html", :status => 404 and return 
       end

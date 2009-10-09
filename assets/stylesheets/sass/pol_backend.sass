@@ -5,7 +5,6 @@
 // on page trough the application stylesheet
 
 body
-  background: #FFF
   margin: 0
   padding: 0
   width: 100%
@@ -82,6 +81,9 @@ body
   .CompPlaceholder
     background: url(../images/16x16/applications-other.png) center no-repeat
 
+  .CompGallery
+    background: url(../images/16x16/emblem-photos.png) center no-repeat
+
   .html, .CompFile
     background: url(../images/16x16/document-save.png) center no-repeat
 
@@ -143,3 +145,20 @@ body
 
   label
     display: block
+
+  .clearfix:after
+    content: "."
+    display: block
+    clear: both
+    visibility: hidden
+    line-height: 0
+    height: 0
+   
+  .clearfix
+    display: inline-block
+   
+  html[xmlns] .clearfix
+    display: block
+   
+  * html .clearfix 
+    height: 1%

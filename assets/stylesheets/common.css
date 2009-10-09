@@ -1,0 +1,23 @@
+/* some often used styles, may be imported */
+/* you may include this stylesheet by linking or copying it to your applications
+ * stylesheet path and then configure its inclusion using pol_cfg.stylesheets */
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}

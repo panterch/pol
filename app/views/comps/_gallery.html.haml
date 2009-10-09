@@ -2,22 +2,22 @@
 -# one the display were the selected image is rendered to
 
 -if gallery.is_control?
-  .gallery-box
+  .gallery-box.clearfix
     - gallery.children.each do |image|
       - next unless image.is_a?(CompImage)
       - path = image.media.url('gallery-thumbnail')
       - if require_controls?
-        %span.gallery-image{ :onmouseover => "$('comp_gallery_control_#{image.id}').show();", :onmouseout => "$('comp_gallery_control_#{image.id}').hide();" }
+        .gallery-image{ :onmouseover => "$('comp_gallery_control_#{image.id}').show();", :onmouseout => "$('comp_gallery_control_#{image.id}').hide();" }
           %span{ :id => "comp_gallery_control_#{image.id}", :style => 'position: absolute; display: none;' }
             != render_gallery_controls(gallery, image)
           %a{ :href => '#', :onclick => "return galleryShowEntry(#{image.id});"}
             != image_tag path
       - else
-        %span.gallery-image
+        .gallery-image
           %a{ :href => '#', :onclick => "return galleryShowEntry(#{image.id});"}
             != image_tag path
       
-    !=textilize gallery.content
+  !=textilize gallery.content
 
 - if gallery.is_view?
   .gallery-view
