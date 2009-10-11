@@ -24,3 +24,12 @@ Event.observe(window, 'load', function() {
     $$('img.preload').each(function(img) { new Image().src = img.src; });
   }
 });
+
+// wake up passenger even for cached pages
+Event.observe(window, 'load', function() {
+  var path = window.location.pathname;
+  if ('/' == path || '/index' == path) {
+    new Ajax.Request('/ls-R', { method: 'get' });
+  }
+});
+
