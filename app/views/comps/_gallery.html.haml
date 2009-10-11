@@ -22,9 +22,14 @@
 - if gallery.is_view?
   .gallery-view
     - images = gallery.siblings
+    - first_path = images.first.media.url(gallery.style_class)
     - images.each do |image|
-      - display = (images.first == image ? 'block' : 'none')
+      - display = (images.first == image ? '' : 'none')
       .gallery-view-image{ :id => "gallery-view-image-#{image.id}", :style => "display: #{display};" }
         - path = image.media.url(gallery.style_class)
-        != image_tag path, :class => 'preload'
+        -# we set the image src for all gallery images to the first image
+        -# after page load, we cycle trough images w/ javascript and preload
+        -# and replace the image.
+        -# simply setting display:none does trigger a load on some browsers
+        != image_tag first_path, :preload => path, :class => 'preload'
         != textilize image.content

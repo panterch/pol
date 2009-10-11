@@ -18,6 +18,10 @@ function galleryShowEntry(id)
 // image preloading
 Event.observe(window, 'load', function() {
   if (document.images) {
-    $$('img.preload').each(function(img) { new Image().src = img.src; });
+    $$('img.preload').each(function(img) {
+      img.src = img.readAttribute('preload');
+      new Image().src = img.src;
+      
+    });
   }
 });
