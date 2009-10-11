@@ -1,26 +1,12 @@
 function register_video(id) {
-  // Event.observe(window, 'load', function() {
-    flowplayer(id, "/flowplayer-3.1.1.swf", { 
-      clip: { 
-          autoPlay: true, 
-          autoBuffering: true }
-    });
-  // });
+  flowplayer(id, "/flowplayer-3.1.1.swf", { 
+    clip: { 
+        autoPlay: true, 
+        autoBuffering: true }
+  });
 }
 
-// image preloading
-function register_image(url) {
-  if (document.images) {
-    Event.observe(window, 'load', function() {
-      new Image().src = url;
-    });
-  }
-}
-
-function replace_comp(hide, show) {
-  $('comp_'+hide).hide();
-  $('comp_'+show).show();
-}
+// gallery navigation
 function galleryShowEntry(id)
 {
   $$('.gallery-view-image').each( function(comp) {
@@ -29,3 +15,9 @@ function galleryShowEntry(id)
   $('gallery-view-image-' + id).show();
 }
 
+// image preloading
+Event.observe(window, 'load', function() {
+  if (document.images) {
+    $$('img.preload').each(function(img) { new Image().src = img.src; });
+  }
+});

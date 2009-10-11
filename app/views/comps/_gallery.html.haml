@@ -26,5 +26,5 @@
       - display = (images.first == image ? 'block' : 'none')
       .gallery-view-image{ :id => "gallery-view-image-#{image.id}", :style => "display: #{display};" }
         - path = image.media.url(gallery.style_class)
-        != image_tag path
+        != image_tag path, :class => 'preload'
         != textilize image.content
