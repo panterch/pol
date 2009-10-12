@@ -19,7 +19,7 @@
       
   !=textilize gallery.content
 
-- if gallery.is_view?
+- if gallery.is_view? && (gallery.siblings.length > 0)
   .gallery-view
     - images = gallery.siblings
     - first_path = images.first.media.url(gallery.style_class)
