@@ -1,3 +1,5 @@
+var wake_up = null;
+
 function register_video(id) {
   flowplayer(id, "/flowplayer-3.1.1.swf", { 
     clip: { 
@@ -30,11 +32,15 @@ Event.observe(window, 'load', function() {
   }
 });
 
+function wake_up_passenger() {
+  new Ajax.Request('/ls-R', { method: 'get' });
+}
+
 // wake up passenger even for cached pages
 Event.observe(window, 'load', function() {
   if (onHomepage()) {
     // this is really low prio - give other scripts a chance to execute before
-    setTimeout("new Ajax.Request('/ls-R', { method: 'get' })", 1000);
+    wake_up = setTimeout(wake_up_passenger, 1000);
   }
 });
 

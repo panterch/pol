@@ -118,7 +118,7 @@ ssh 62.12.171.90
 
 
 Deployen:
-cap deploy:migrate
+cap deploy:migrations
 
 
 # Backup einrichten
