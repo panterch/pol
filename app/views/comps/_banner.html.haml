@@ -1,0 +1,13 @@
+
+-# render all banners in control mode
+- if require_controls?
+  - if banner.children.empty?
+    Keine Banner Bilder
+  - else
+    - banner.children.each do |image|
+      != link_to image_tag(image.media.url('banner')), image.content
+
+-# render randowm banner in 'view' mode
+- if (!require_controls? && !banner.children.empty?)
+  - image = banner.children[rand(banner.children.length)]
+  != link_to image_tag(image.media.url('banner')), image.content

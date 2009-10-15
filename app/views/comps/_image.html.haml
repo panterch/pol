@@ -1,5 +1,3 @@
 - path = image.media.url(image.style_class)
 != image_tag path
 != textilize image.content
--if image.parent
-  != javascript_tag "register_image('#{path}');"

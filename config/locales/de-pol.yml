@@ -20,6 +20,7 @@ de:
       comp_file: Datei Download
       comp_raw: Direkte HTML Eingabe
       comp_placeholder: Platzhalter (kein Inhalt)
+      comp_banner: Banner Komponente
     attributes:
       contact:
         from: Absender

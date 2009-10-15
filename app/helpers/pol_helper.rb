@@ -104,7 +104,7 @@ module PolHelper
     content = ''
 
     # render control icons when in backend
-    if controller.is_a? PagesController
+    if require_controls?
       content += render_controls(comp)
     end
 
