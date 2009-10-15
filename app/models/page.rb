@@ -75,11 +75,9 @@ class Page < ActiveRecord::Base
 
   # tries retrieving a page via 'ref' given, using different fallbacks
   def self.retrieve(ref)
-    return nil if ref.blank?
-    ref = ref.to_s
+    ref = ref.blank? ? 'index' : ref.to_s
     page = Page.find_by_permalink(ref)
     page ||= Page.find(ref) if ref =~ /\d+/
-    page ||= Page.find_by_permalink('index')
     page
   end
 

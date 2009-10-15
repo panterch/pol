@@ -9,14 +9,34 @@ module PolHelper
     @page.ancestors.include?(p) ? 'active' : ""
   end
 
+  # renders a flat menu of the given pages
   def menu_items(pages)
     pages.map{ |p| content_tag(:li, page_link(p), :class => activated(p))}.join("\n")
   end
 
+  # renders a menu using the page icons given
   def menu_icons(pages)
     pages.map do |p|
       content_tag :li, permalink(image_tag(p.icon.url),p,:class =>activated(p))
     end.join("\n")
+  end
+
+  # renders a flat menu but assures that the current @page is visible in the
+  # menu including its children / siblings
+  #
+  # currently this supports only two navigation levels
+  def tree_menu(pages)
+    content_tag :ul do
+      pages.map do |p|
+        content_tag(:li, :class => activated(p)) do
+          content = page_link(p)
+          if @page.ancestors_and_self.include?(p)
+            content += tree_menu(p.children)
+          end
+          content
+        end
+      end
+    end
   end
 
   def language_items()
