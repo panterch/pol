@@ -1,0 +1,19 @@
+- form_remote_tag(:url => "/#{mailer.id}" ) do
+  %fieldset
+    .holder
+      != label_tag('name')
+      != text_field_tag('name', params[:email], :class => 'text')
+    .holder
+      != label_tag('vorname')
+      != text_field_tag('vorname', params[:email], :class => 'text')
+    .holder
+      != label_tag('telefonnummer')
+      != text_field_tag('telefonnummer', params[:email], :class => 'text' )
+    .holder
+      != label_tag('email')
+      != text_field_tag('email', params[:email], :class => 'text' )
+    .holder
+      != label_tag('kommentar')
+      != text_area_tag('kommentar')
+    %input.btn-reset(type="reset" value="l&ouml;schen")
+    %input.btn-submit(type="submit" value="senden")

@@ -99,7 +99,7 @@ module PolHelper
   end
   
   def render_show_partial(comp)
-    kind = comp.type.to_s.underscore[5..-1]
+    kind = comp.kind
     main = comp.parent || comp
     content = ''
 

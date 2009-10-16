@@ -33,6 +33,7 @@ class PolConfig
                            :'bottom-box' => "740",
                            :'left-box' => "490", 
                            :'right-box' => "240",
+                           :'banner' => "240",
                            :'gallery-thumbnail' => "75",
                            :'lightbox-thumbnail' => "115x70#" }
 

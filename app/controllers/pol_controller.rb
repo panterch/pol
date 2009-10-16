@@ -15,6 +15,17 @@ class PolController < ApplicationController
   def show
   end
 
+  # generic form submission action
+  # this is called via xhr
+  def submit
+    model = Comp.find(params[:id])
+    model.handle_submit(params)
+    partial = "/comps/#{model.kind}_success"
+    render :update do |page|
+      page.replace_html "comp_#{model.id}", :partial => partial
+    end
+  end
+
   # this is called by wget
   def sitemap
     links = (Page.all.map(&:permalink) + [ 'index' ]).sort

@@ -81,6 +81,10 @@ class Page < ActiveRecord::Base
     page
   end
 
+  def cacheable
+    true
+  end
+
 protected
 
 

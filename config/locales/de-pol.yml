@@ -21,6 +21,7 @@ de:
       comp_raw: Direkte HTML Eingabe
       comp_placeholder: Platzhalter (kein Inhalt)
       comp_banner: Banner Komponente
+      comp_mailer: Kontakt Formular
     attributes:
       contact:
         from: Absender

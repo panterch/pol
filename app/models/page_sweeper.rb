@@ -3,11 +3,11 @@ class PageSweeper < ActionController::Caching::Sweeper
   observe Comp
 
   def after_save(record)
-    self.class::sweep
+    self.class::sweep if record.cacheable?
   end
   
   def after_destroy(record)
-    self.class::sweep
+    self.class::sweep if record.cacheable?
   end
   
   def self.sweep

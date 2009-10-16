@@ -50,5 +50,15 @@ class Comp < ActiveRecord::Base
   def moveable?
     true
   end
+
+  # returns the comp_name without comp_
+  def kind
+    type.to_s.underscore[5..-1]
+  end
+
+  # when set to true will cause the sweeper to act
+  def cacheable?
+    true
+  end
   
 end
