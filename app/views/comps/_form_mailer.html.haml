@@ -1,3 +1,5 @@
 - field_set_tag "Kontaktformular anlegen" do
   != render :partial => 'comps/form_common', :object => form_mailer
+  != form_mailer.label :string_1, 'Empfaengeraddresse fuer Kontaktanfragen'
+  != form_mailer.text_field :string_1
   != render :partial => 'comps/form_buttons', :object => form_mailer
