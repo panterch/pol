@@ -37,6 +37,10 @@ class PolTables < ActiveRecord::Migration
       t.string   "style_class"
       t.integer  "position"
       t.text     "content" unless pol_cfg.multilang?
+
+      t.string   "string_1"
+      t.string   "string_2"
+      t.text     "text_1"
     end
 
     create_table "contacts", :force => true do |t|

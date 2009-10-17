@@ -8,9 +8,6 @@ class CompsController < PolBackendController
   
   def new
     @comp = Comp.build_sti(type_param, :page => @page)
-    @comp.lat = params[:lat] || params[:comp] && params[:comp][:lat]
-    @comp.lng = params[:lng] || params[:comp] && params[:comp][:lng]
-    @comp.level = params[:level] || @parent.try(:level)
     @comp.style_class = params[:style_class] || @parent.try(:style_class)
     globalize_object(@comp)
   end

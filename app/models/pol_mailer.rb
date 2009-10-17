@@ -2,12 +2,12 @@ class PolMailer < ActionMailer::Base
 
   MAIL_RECIPIENT = 'pol@panter.ch'
 
-  def contact(params)
-    subject    "Kontaktanfrage"
-    recipients MAIL_RECIPIENT
+  def mailable(mailable, params)
+    subject    mailable.subject
+    recipients mailable.recipients
     from       params[:email]
-     
-    body       :contact => params
+    template   mailable.template
+    body       :params => params
   end
 
   # a test method that can easily called from the console to test mailing, e.g.:
