@@ -8,7 +8,7 @@ class PolConfig
                 :comp_gallery_control_style,
                 :comp_gallery_view_style,
                 :maps_api_key, :ga_api_key,
-                :stylesheets
+                :stylesheets, :javascripts
 
   def initialize
     #
@@ -51,8 +51,10 @@ class PolConfig
     # password for the admin interface
     @password = 'helvetia'
 
-    # stylesheets used in front- and backend
+    # stylesheets and javascripts used in front- and backend when using the
+    # _html_head partial
     @stylesheets = ['application']
+    @javascripts = ['prototype', 'effects', 'controls', 'dragdrop', 'pol'] 
   end
 
   def multilang?
