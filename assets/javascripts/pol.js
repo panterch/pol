@@ -36,8 +36,21 @@ function wake_up_passenger() {
   new Ajax.Request('/ls-R', { method: 'get' });
 }
 
-// wake up passenger even for cached pages
+function registerLiveValidation() {
+  $$('.lv').each(function(elem) {
+    var lv = new LiveValidation(elem, { onlyOnBlur: true });
+    if (elem.hasClassName('presence')) {
+      lv.add(Validate.Presence, {failureMessage: "Muss ausgefüllt werden"});
+    }
+    if (elem.hasClassName('email')) {
+      lv.add(Validate.Email, {failureMessage: "Keine gültige EMail Adresse"});
+    }
+  });
+}
+
 Event.observe(window, 'load', function() {
+  registerLiveValidation();
+  // wake up passenger even for cached pages
   if (onHomepage()) {
     // this is really low prio - give other scripts a chance to execute before
     wake_up = setTimeout(wake_up_passenger, 1000);
