@@ -1,8 +1,8 @@
-- form_remote_tag(:url => "/#{mailer.id}" ) do
+- form_remote_tag(:url => "/#{mailer.id}", :html => { } ) do
   %fieldset
     .holder
       != label_tag('name')
-      != text_field_tag('name', params[:email], :class => 'text')
+      != text_field_tag('name', params[:email], :class => 'text lv presence')
     .holder
       != label_tag('vorname')
       != text_field_tag('vorname', params[:email], :class => 'text')
@@ -11,7 +11,7 @@
       != text_field_tag('telefonnummer', params[:email], :class => 'text' )
     .holder
       != label_tag('email')
-      != text_field_tag('email', params[:email], :class => 'text' )
+      != text_field_tag('email', params[:email], :class => 'text lv presence email' )
     .holder
       != label_tag('kommentar')
       != text_area_tag('kommentar')
