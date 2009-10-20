@@ -48,7 +48,12 @@ config.gem "webrat", :version => ">=0.4.3"
 config.gem "mocha"
 
 # routes.rb
+  # link / with index cms page
   map.connect '/', :controller => 'pol', :action => 'index'
+  # link generic submit action (e.g. contact form)
+  map.connect '/:id', :controller => 'pol', :action => 'submit',
+              :conditions => { :method => :post }
+  # link cms pages
   map.connect '/:permalink', :controller => 'pol', :action => 'show'
 
 rm public/index.html
