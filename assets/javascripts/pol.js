@@ -32,10 +32,12 @@ Event.observe(window, 'load', function() {
   }
 });
 
+// wake up passenger even for cached pages
 function wake_up_passenger() {
   new Ajax.Request('/ls-R', { method: 'get' });
 }
 
+// register live validation javascripts for inputs w/ class lv
 function registerLiveValidation() {
   $$('.lv').each(function(elem) {
     var lv = new LiveValidation(elem, { onlyOnBlur: true });
@@ -48,9 +50,19 @@ function registerLiveValidation() {
   });
 }
 
+// register target blank for links w/ rel=external
+function registerNewWindowLinks() {
+  $$('a[rel="external"]').each(function(link){
+      if(link.readAttribute('href') != '' && link.readAttribute('href') != '#'){
+          link.writeAttribute('target','_blank');
+      }
+  });
+}
+
 Event.observe(window, 'load', function() {
   registerLiveValidation();
-  // wake up passenger even for cached pages
+  registerNewWindowLinks();
+
   if (onHomepage()) {
     // this is really low prio - give other scripts a chance to execute before
     wake_up = setTimeout(wake_up_passenger, 1000);
