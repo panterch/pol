@@ -3,6 +3,7 @@ class PolController < ApplicationController
 
   layout 'pol'
   caches_page :show, :index, :replace_comp
+  protect_from_forgery :except => :submit
 
   before_filter :set_locale
   before_filter :prepare_page, :except => :replace_comp
