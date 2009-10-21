@@ -1,7 +1,13 @@
 .text_field.clearfix
-  %label Inhalt
+  %label Terminstart
+  != form_calendar_entry.date_select :date_start
+.text_field.clearfix
+  %label Terminstart
+  != form_calendar_entry.date_select :date_end  
+.text_field.clearfix
+  %label Beschreibung
   - if pol_cfg.multilang?
-    - form_content.fields_for :globalize_translations do |trans|
+    - form_calendar_entry.fields_for :globalize_translations do |trans|
       .translation
         - if 1 < pol_cfg.languages.length
           != trans.label :content, "Sprache: #{trans.object.locale}"
