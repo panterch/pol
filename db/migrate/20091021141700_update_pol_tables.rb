@@ -1,7 +1,7 @@
 class UpdatePolTables < ActiveRecord::Migration
   def self.up
-    add_column :comps, :date_start, :date_time
-    add_column :comps, :date_end, :date_time
+    add_column :comps, :date_start, :datetime
+    add_column :comps, :date_end, :datetime
     add_column :comps, :time_range, :string
   end
 
