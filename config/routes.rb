@@ -16,7 +16,6 @@ ActionController::Routing::Routes.draw do |map|
     pages.resources :comp_maps, :controller => 'comps'
     pages.resources :comp_galleries, :controller => 'comps'
     pages.resources :comp_subnav, :controller => 'comps'
-    pages.resources :comp_calendar, :controller => 'comps'
   end
   
   map.resources :contacts, :only => [:new, :create, :show]

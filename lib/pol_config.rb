@@ -25,7 +25,7 @@ class PolConfig
       'top-box' => [ ],
       'bottom-box' => [ ],
       'left-box' => %w( CompText CompImage CompVideo ),
-      'right-box' => %w( CompText CompImage CompVideo CompCalendar)
+      'right-box' => %w( CompText CompImage CompVideo)
     }
 
     # which thumbs to compute for images
