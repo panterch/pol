@@ -59,9 +59,20 @@ function registerNewWindowLinks() {
   });
 }
 
+// depending on the url paramter, the mailer form or a success message is shown
+function showMailerForm() {
+  $$('form.mailer').each(function(elem) {
+    var selector = window.location.href.match(/success/) ? '.success' : '.query';
+    elem.getElementsBySelector(selector).each(function(to_show) {
+      to_show.show();
+      });
+  });
+}
+
 Event.observe(window, 'load', function() {
   registerLiveValidation();
   registerNewWindowLinks();
+  showMailerForm();
 
   if (onHomepage()) {
     // this is really low prio - give other scripts a chance to execute before
