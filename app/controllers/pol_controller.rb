@@ -21,10 +21,7 @@ class PolController < ApplicationController
   def submit
     model = Comp.find(params[:id])
     model.handle_submit(params)
-    partial = "/comps/#{model.kind}_success"
-    render :update do |page|
-      page.replace_html "comp_#{model.id}", :partial => partial
-    end
+    redirect_to '/'+model.page.permalink+'?success'
   end
 
   # this is called by wget

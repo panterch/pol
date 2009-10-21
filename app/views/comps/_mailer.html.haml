@@ -1,5 +1,10 @@
-- form_remote_tag(:url => "/#{mailer.id}", :html => { } ) do
-  %fieldset
+-# display of a mailer form
+-# both the form and a success message are given out - a javascripts decides
+-# which to display. this allows page caching for contact forms
+
+- form_tag("/#{mailer.id}", :class => 'mailer') do
+  -# .query classes are showed by javascript if page loads w/o parameters
+  %fieldset.query(style="display:none;")
     .holder.clearfix
       != label_tag('name')
       != text_field_tag('name', params[:email], :class => 'text lv presence')
@@ -17,3 +22,9 @@
       != text_area_tag('kommentar', nil, :rows => 7)
     %input.btn-reset(type="reset" value="l&ouml;schen")
     %input.btn-submit(type="submit" value="senden")
+
+  -# .success classes are showed by javascript if page loads with ?success
+  -# (success is returned by the redirect of polcontroller#submit)
+  %fieldset.success(style="display:none")
+    Vielen Dank f&uuml;r Ihre Anfrage!
+
