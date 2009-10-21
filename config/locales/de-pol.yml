@@ -22,6 +22,7 @@ de:
       comp_placeholder: Platzhalter (kein Inhalt)
       comp_banner: Banner Komponente
       comp_mailer: Kontakt Formular
+      comp_calendar: Kalender
     attributes:
       contact:
         from: Absender
