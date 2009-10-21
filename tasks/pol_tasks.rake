@@ -1,4 +1,6 @@
-# desc "Explaining what the task does"
-# task :pol do
-#   # Task goes here
-# end
+namespace :pol do
+  desc "Sync extra files from pol"
+  task :sync do
+    system "rsync -ruv vendor/plugins/pol/db/migrate db"
+  end
+end
