@@ -1,10 +1,10 @@
-.text_field.clearfix
-  %label Terminstart
+.text_field
+  %label Termin-Start
   != form_calendar_entry.date_select :date_start
-.text_field.clearfix
-  %label Terminstart
+.text_field
+  %label Termin-Ende
   != form_calendar_entry.date_select :date_end  
-.text_field.clearfix
+.text_field
   %label Beschreibung
   - if pol_cfg.multilang?
     - form_calendar_entry.fields_for :globalize_translations do |trans|
