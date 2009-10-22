@@ -1,0 +1,3 @@
+class CompRich < Comp
+
+end

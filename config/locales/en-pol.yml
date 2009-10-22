@@ -1,0 +1,29 @@
+en:
+  pol:
+    site: pol
+    email: "pol@panter.ch"
+    ga_key:
+    top-box: Obere Box
+    bottom-box: Untere Box
+    left-box: Linke Box
+    right-box: Rechte Box
+    center: Hauptbereich
+    right: Rechte Spalte
+
+  activerecord:
+    models:
+      contact: Kontaktformular
+      comp_text: Textbaustein
+      comp_image: Bild mit Text
+      comp_video: Video
+      comp_gallery: Bilder Gallery
+      comp_file: Datei Download
+      comp_raw: Direkte HTML Eingabe
+      comp_placeholder: Platzhalter (kein Inhalt)
+      comp_banner: Banner Komponente
+      comp_mailer: Kontakt Formular
+      comp_rich: RichText Baustein
+    attributes:
+      contact:
+        from: Absender
+        body: Nachrichttext
