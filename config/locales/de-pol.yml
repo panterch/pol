@@ -22,6 +22,7 @@ de:
       comp_placeholder: Platzhalter (kein Inhalt)
       comp_banner: Banner Komponente
       comp_mailer: Kontakt Formular
+      comp_rich: RichText Baustein
     attributes:
       contact:
         from: Absender
