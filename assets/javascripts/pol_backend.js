@@ -29,8 +29,6 @@ function initRichEditors()
     theme_advanced_buttons3_add : "tablecontrols",
     theme_advanced_buttons3_add_before : "tablecontrols,separator",
     theme_advanced_buttons4 : "",
-    theme_advanced_toolbar_location : "top",
-    theme_advanced_toolbar_align : "left",
     table_inline_editing : true
   });
 }
