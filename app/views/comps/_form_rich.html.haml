@@ -1,0 +1,4 @@
+- field_set_tag "Richtext bearbeiten" do
+  != render :partial => 'comps/form_common', :object => form_rich
+  != render :partial => 'comps/form_content', :object => form_rich, :locals => { :style_class => 'richtext' }
+  != render :partial => 'comps/form_buttons', :object => form_rich
