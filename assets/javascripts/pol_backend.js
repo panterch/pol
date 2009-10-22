@@ -14,3 +14,27 @@ function edit_page_content() {
   $('page_control_tab_content').className = 'control-tab-active';
   return false;
 }
+
+function initRichEditors()
+{
+  tinyMCE.init({
+    mode : "specific_textareas",
+    theme : "advanced",
+    editor_selector : "richtext",
+    content_css : "/stylesheets/application.css",
+    body_class : "content",
+    theme_advanced_toolbar_location : "top",
+    theme_advanced_toolbar_align : "left",
+    plugins : "table",
+    theme_advanced_buttons3_add : "tablecontrols",
+    theme_advanced_buttons3_add_before : "tablecontrols,separator",
+    theme_advanced_buttons4 : "",
+    theme_advanced_toolbar_location : "top",
+    theme_advanced_toolbar_align : "left",
+    table_inline_editing : true
+  });
+}
+
+Event.observe(window, 'load', function() {
+  initRichEditors();
+});

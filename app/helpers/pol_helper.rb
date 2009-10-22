@@ -31,7 +31,7 @@ module PolHelper
         content_tag(:li, :class => activated(p)) do
           content = page_link(p)
           if @page.ancestors_and_self.include?(p)
-            content += tree_menu(p.children)
+            content += tree_menu(p.children) unless p.children.empty?
           end
           content
         end
