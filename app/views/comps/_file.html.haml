@@ -1,4 +1,7 @@
 %p
   Download:
-  != link_to file.media_file_name, file.media.url
+  -if file.content.blank?
+    != link_to file.media_file_name, file.media.url
+  -else
+    != link_to file.content, file.media.url
   = "[#{number_to_human_size(file.media.size)}]"

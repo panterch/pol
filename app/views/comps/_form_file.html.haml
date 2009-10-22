@@ -1,4 +1,8 @@
 - field_set_tag "Download Komponente" do
+  .text_field
+    %label Datei-Titel
+    != form_file.text_field :content
+    %br/
   .file_field
     != render :partial => 'comps/form_common', :object => form_file
     != form_file.label :media, 'Datei zum Download (z.B. PDF)'
