@@ -8,6 +8,14 @@ function register_video(id) {
   });
 }
 
+function ie_x_or_higher(x) {
+  // consider every other browser as 'higher'
+  if (!Prototype.Browser.IE) return true;
+  // check ie version
+  var v = parseInt(navigator.userAgent.substring(navigator.userAgent.indexOf("MSIE")+5));
+  return v >= x;
+}
+
 // gallery navigation
 function galleryShowEntry(id)
 {
