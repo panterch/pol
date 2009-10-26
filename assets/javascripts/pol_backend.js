@@ -17,6 +17,9 @@ function edit_page_content() {
 
 function initRichEditors()
 {
+  if ("undefined" == typeof(tinyMCE)) {
+    return;
+  }
   tinyMCE.init({
     mode : "specific_textareas",
     theme : "advanced",
