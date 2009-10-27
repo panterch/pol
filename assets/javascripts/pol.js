@@ -30,6 +30,18 @@ function onHomepage() {
   return '/' == path || '/index' == path;
 }
 
+function getUrlParameter(name) {
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null ) {
+    return null;
+  } else {
+    return results[1];
+  }
+}
+
 // image preloading
 Event.observe(window, 'load', function() {
   // first fix src attribute
