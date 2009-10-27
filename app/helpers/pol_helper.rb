@@ -39,10 +39,10 @@ module PolHelper
     end
   end
 
-  def language_items()
+  def language_items(chars = 1)
     pol_cfg.languages.map do |l|
       active = (I18n.locale == l) ? 'active' : ''
-      content_tag(:li, permalink(l.upcase[0..0], @page, :locale => l), :class => active)
+      content_tag(:li, permalink(l.upcase[0...chars], @page, :locale => l), :class => active)
 
     end.join("\n")
   end
@@ -67,13 +67,16 @@ module PolHelper
   end
 
   def permalink(title, page, params = {})
-    locale = params.delete(:locale)
-    locale ||= pol_cfg.multilang? ? "#{I18n.locale}" : nil
-    link = [ locale, page.permalink ].compact.join('/')
-    link_to title, "/#{link}", params
+    link_to title, href(page), params
   end
 
-
+  def href(page, params = {})
+    locale = params.delete(:locale)
+    locale ||= pol_cfg.multilang? ? "#{I18n.locale}" : nil
+    link = (page.is_a? Page) ? page.permalink : page.to_s
+    link = [ locale, link ].compact.join('/')
+    "/#{link}"
+  end
   
   def javascript(*files)
     content_for(:head) { javascript_include_tag(*files) }
