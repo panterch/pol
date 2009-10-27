@@ -25,7 +25,7 @@ function initRichEditors()
     theme : "advanced",
     editor_selector : "richtext",
     content_css : "/stylesheets/application.css",
-    body_class : "content",
+    body_class : "comp",
     theme_advanced_toolbar_location : "bottom",
     theme_advanced_toolbar_align : "left",
     plugins : "table",
