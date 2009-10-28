@@ -24,10 +24,27 @@ class PolController < ApplicationController
     redirect_to '/'+model.page.permalink+'?success'
   end
 
-  # this is called by wget
+  # this is called via the ls-R method. this is called by different tools
+  # that need a directory style information about the entities on the server
+  # (e.g. wget or tinymce image list).
   def sitemap
-    links = (Page.all.map(&:permalink) + [ 'index' ]).sort
-    render :text => links.map { |l| "<a href='/#{l}'>#{l}</a>" }.join("\n")
+    # the use of the format parameter is a bit ugly, but for our current
+    # requirements it suits
+    respond_to do |format|
+      # html responds with a sitemap suited for wget
+      format.html do
+        links = (Page.all.map(&:permalink) + [ 'index' ]).sort
+        render :text => links.map { |l| "<a href='/#{l}'>#{l}</a>" }.join("\n")
+      end
+      # js responds with a javascript usable by tinymce
+      format.js do
+        imgs = CompImage.all.map do |c|
+          "['#{c.media_file_name}', '#{c.media.url(:original)}']"
+        end.join(',')
+        render :text => "var tinyMCEImageList = new Array(#{imgs});"
+      end
+    end
+
   end
 
   # this is called via xhr

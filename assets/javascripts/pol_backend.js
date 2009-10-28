@@ -32,7 +32,9 @@ function initRichEditors()
     theme_advanced_buttons3_add : "tablecontrols",
     theme_advanced_buttons3_add_before : "tablecontrols,separator",
     theme_advanced_buttons4 : "",
-    table_inline_editing : true
+    removeformat_selector : 'p,b,strong,em,i,span,ins',
+    table_inline_editing : true,
+    external_image_list_url : "/ls-R.js?mode=external_image_list"
   });
 }
 

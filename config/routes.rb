@@ -18,9 +18,7 @@ ActionController::Routing::Routes.draw do |map|
     pages.resources :comp_subnav, :controller => 'comps'
   end
   
-  map.resources :contacts, :only => [:new, :create, :show]
-  
-  map.connect '/ls-R', :controller => 'pol', :action => 'sitemap'
+  map.connect '/ls-R.:format', :controller => 'pol', :action => 'sitemap'
   map.connect '/exception_test', :controller => 'exception_test',
                                  :action => 'error'
 
