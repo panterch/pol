@@ -1,11 +1,11 @@
 class CompsController < PolBackendController
 
-  before_filter :load_page
-  before_filter :load_comp, :except => [:new, :create]
+  before_filter :load_page, :except => [:index]
+  before_filter :load_comp, :except => [:index, :new, :create]
   before_filter :load_parent
   
   protect_from_forgery :only => [:create, :destroy]
-  
+
   def new
     @comp = Comp.build_sti(type_param, :page => @page)
     @comp.style_class = params[:style_class] || @parent.try(:style_class)
@@ -26,7 +26,6 @@ class CompsController < PolBackendController
   
   def edit
   end
-
   
   def update
     if (@comp.update_attributes(params[:comp]))
