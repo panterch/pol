@@ -43,7 +43,6 @@ module PolHelper
     pol_cfg.languages.map do |l|
       active = (I18n.locale == l) ? 'active' : ''
       content_tag(:li, permalink(l.upcase[0...chars], @page, :locale => l), :class => active)
-
     end.join("\n")
   end
 
@@ -67,7 +66,7 @@ module PolHelper
   end
 
   def permalink(title, page, params = {})
-    link_to title, href(page), params
+    link_to title, href(page, params), params
   end
 
   def href(page, params = {})

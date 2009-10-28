@@ -81,7 +81,7 @@ class Page < ActiveRecord::Base
     page
   end
 
-  def cacheable
+  def cacheable?
     true
   end
 
