@@ -62,7 +62,7 @@ function registerLiveValidation() {
   $$('.lv').each(function(elem) {
     var lv = new LiveValidation(elem, { onlyOnBlur: true });
     if (elem.hasClassName('presence')) {
-      lv.add(Validate.Presence, {failureMessage: "Dies ist ein Pfichtfeld - Danke für Ihre Eingabe"});
+      lv.add(Validate.Presence, {failureMessage: "Dies ist ein Pflichtfeld - Danke für Ihre Eingabe"});
     }
     if (elem.hasClassName('email')) {
       lv.add(Validate.Email, {failureMessage: "Keine gültige EMail Adresse"});
