@@ -2,7 +2,6 @@ class PolBackendController < ApplicationController
   include PolControl
   helper :pol
   layout 'pol_backend'
-
   before_filter :authenticate
   before_filter :set_locale
   helper_method :authenticated?

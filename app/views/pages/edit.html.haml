@@ -1,3 +1,19 @@
+%h1 
+  POL Content Management System
+%fieldset.clearfix
+  %legend Seitenauswahl
+  -if 1<pol_cfg.languages.length
+    .leaves
+      %p Sprachwahl
+      %ul
+        - pol_cfg.languages.each do |lang|
+          %li{ :class => (I18n.locale == lang ? 'active' : '') }
+            != link_to lang, :language => lang
+  != render_nav(@page)
+#backend-content-area
+  != flash[:notice]
+  != flash[:error]
+
 %h2= "Seite «#{@page.title}» bearbeiten"
 
 #page_control
