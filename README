@@ -8,7 +8,7 @@ rails dein_neues_pol_cmd
 ./script/plugin install git://github.com/rails/exception_notification.git
 ./script/plugin install git://github.com/thoughtbot/paperclip.git
 ./script/plugin install git://github.com/technoweenie/permalink_fu.git
-./script/plugin install git://github.com/giraffesoft/resource_controller.git
+./script/plugin install git://github.com/jamesgolick/resource_controller.git
 
 haml --rails .
 
