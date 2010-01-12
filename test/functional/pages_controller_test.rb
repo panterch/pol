@@ -47,7 +47,7 @@ class PagesControllerTest < ActionController::TestCase
     page_child_b = Factory(:page, :parent => page_root)
     page_child_c = Factory(:page, :parent => page_root)
     post :order, :id => page_root,
-                 page_root.id.to_s => page_root.children.map(&:id).reverse
+                 "pages_#{page_root.id}" => page_root.children.map(&:id).reverse
     assert_response :success
     assert_equal page_child_c, page_root.children(true)[0]
     assert_equal page_child_b, page_root.children[1]

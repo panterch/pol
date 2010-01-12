@@ -11,7 +11,7 @@ class PolControllerTest < ActionController::TestCase
 
   def test_index
     page = Factory(:page)
-    get :index
+    get :index, :permalink => page.permalink
     assert_response :success
     assert_template 'pol/show.html.haml'
   end
