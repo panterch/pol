@@ -120,7 +120,7 @@ module PolHelper
 
     # render div holding everything above (hidden when a child)
     content = content_tag :div, content,
-                          :id => "comp_#{comp.id}", :class => "comp comp_#{kind} clearfix",
+                          :id => "comp_#{comp.id}", :class => "comp comp_#{kind}",
                           :style => comp.parent.try(:pageable?) ? "display: none;" : '' 
 
     # render children recursive
