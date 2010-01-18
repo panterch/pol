@@ -1,0 +1,17 @@
+-pol_cfg.comp_locations.each do |style_class|
+  %h2=t(style_class, :scope => :pol)
+  
+  %fieldset{ :class => "#{style_class} comp_new" }
+    %legend Neuen Inhalt hinzufügen 
+    %ul
+      -pol_cfg.comp_available[style_class].each do |comp_name|
+        %li{:class => "#{comp_name}"}
+          != link_to t('activerecord.models.'+comp_name.underscore), new_page_comp_url(@page, :type => comp_name, :style_class => style_class )
+    %br.break
+    
+  - @page.comps_styled(style_class).each do |comp|
+    %fieldset
+      %legend{:class => "#{comp.class.name}"}
+        = comp.class.human_name
+        = render 'comps/control', :control => comp
+      = render 'comps/comp', :comp => comp

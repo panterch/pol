@@ -17,7 +17,7 @@ class CompsController < PolBackendController
     if (@comp.valid?)
       @comp.parent = @parent
       @page.comps << @comp
-      flash[:notice] = 'successfully created component.'
+      flash[:notice] = t('flash.comp.created') 
       redirect_to edit_page_url(@comp.page)
     else
       render :action => :new
@@ -29,7 +29,7 @@ class CompsController < PolBackendController
   
   def update
     if (@comp.update_attributes(params[:comp]))
-      flash[:notice] = 'successfully updated component.'
+      flash[:notice] = t('flash.comp.updated') 
       redirect_to edit_page_url(@comp.page)
     else
       render :action => :edit
@@ -38,7 +38,7 @@ class CompsController < PolBackendController
 
   def destroy
     @comp.destroy
-    flash[:notice] = 'successfully destroyed component.'
+    flash[:notice] = t('flash.comp.destroyed') 
     redirect_to edit_page_url(@comp.page)
   end
 

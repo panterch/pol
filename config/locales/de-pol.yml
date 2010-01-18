@@ -9,6 +9,12 @@ de:
     right-box: Rechte Box
     center: Hauptbereich
     right: Rechte Spalte
+  
+  flash:
+    comp:
+      created: Baustein erfolgreich erstellt.
+      updated: Baustein erfolgreich geändert.
+      destroyed: Baustein erfolgreich gelöscht.
 
   activerecord:
     models:
