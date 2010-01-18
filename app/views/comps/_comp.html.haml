@@ -1,0 +1,7 @@
+- main = comp.parent || comp
+!= render :partial => '/comps/'+comp.kind, :object => comp
+!= render(:partial => '/comps/pager', :object => comp) if main.pageable? && !main.children.blank?
+
+- comp.children.each do |child|
+  - next unless comp.pageable?
+  = render 'comps/comp', :comp => child

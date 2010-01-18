@@ -3,7 +3,7 @@ class CompsController < PolBackendController
   before_filter :load_page, :except => [:index]
   before_filter :load_comp, :except => [:index, :new, :create]
   before_filter :load_parent
-  
+
   protect_from_forgery :only => [:create, :destroy]
 
   def new
@@ -11,7 +11,7 @@ class CompsController < PolBackendController
     @comp.style_class = params[:style_class] || @parent.try(:style_class)
     globalize_object(@comp)
   end
-  
+
   def create
     @comp = Comp.build_sti(type_param, params[:comp])
     if (@comp.valid?)
@@ -23,22 +23,30 @@ class CompsController < PolBackendController
       render :action => :new
     end
   end
-  
+
   def edit
   end
-  
+
   def update
     if (@comp.update_attributes(params[:comp]))
+      <<<<<<< HEAD
       flash[:notice] = t('flash.comp.updated')
+      =======
+        flash[:notice] = t('flash.comp.updated')
+      >>>>>>> improvements
       redirect_to edit_page_url(@comp.page)
     else
       render :action => :edit
     end
-  end 
+  end
 
   def destroy
     @comp.destroy
+    <<<<<<< HEAD
     flash[:notice] = t('flash.comp.destroyed')
+    =======
+      flash[:notice] = t('flash.comp.destroyed')
+    >>>>>>> improvements
     redirect_to edit_page_url(@comp.page)
   end
 
@@ -51,17 +59,17 @@ class CompsController < PolBackendController
     @comp.move_higher
     redirect_to edit_page_url(@comp.page)
   end
-    
+
   protected
-  
+
     def load_page
       @page = Page.find(params[:page_id])
     end
-    
+
     def load_comp
       @comp = Comp.find(params[:id])
-    end  
-    
+    end
+
     def load_parent
       @parent = Comp.find(params[:comp_id]) if params[:comp_id]
     end
@@ -71,8 +79,8 @@ class CompsController < PolBackendController
     # to extract the wanted type from the request
     def type_param
       params[:type] || # as plain paramter
-      (params[:comp] && params[:comp][:type]) || # as hidden field on comp form
-      request.path.match('^/pages/\d+/(\w*).*$')[1].classify # from routes.rb
+        (params[:comp] && params[:comp][:type]) || # as hidden field on comp form
+        request.path.match('^/pages/\d+/(\w*).*$')[1].classify # from routes.rb
     end
-    
+
 end

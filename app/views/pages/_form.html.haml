@@ -12,6 +12,9 @@
       -else
         != f.text_field :title
     .text_field
+      != f.label :parent_id, 'Eltern Knote'
+      != f.select :parent_id, options_for_select(parent_pages, @page.parent_id)
+    .text_field
       != f.label :permalink, 'Permalink (wird automatisch generiert wenn leer)'
       != f.text_field :permalink
     .file_field

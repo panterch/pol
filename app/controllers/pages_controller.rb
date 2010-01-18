@@ -11,6 +11,12 @@ class PagesController < PolBackendController
   def order
     template = params["pages_#{object.id}"].reject { |id| id.blank? }
     object.order_children(template)
+    
+    if params[:no_rjs]
+      render :nothing => true
+      return 
+    end
+    
     render :update do |page|
       page.visual_effect :highlight, "pages_#{object.id}"
     end

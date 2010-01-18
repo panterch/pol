@@ -1,15 +1,3 @@
-%h1 
-  POL Content Management System
-%fieldset.clearfix
-  %legend Seitenauswahl
-  -if 1<pol_cfg.languages.length
-    .leaves
-      %p Sprachwahl
-      %ul
-        - pol_cfg.languages.each do |lang|
-          %li{ :class => (I18n.locale == lang ? 'active' : '') }
-            != link_to lang, :language => lang
-  != render_nav(@page)
 #backend-content-area
   != flash[:notice]
   != flash[:error]
@@ -21,13 +9,10 @@
     Seitenattribute
   %a.control-tab-active{ :id => 'page_control_tab_content', :href => '#', :onclick => "return edit_page_content();" }
     Seiteninhalte
+    
+#page_edit
+  #page_form{ :style => 'display: none;' }
+    != render :partial => 'pages/form'
 
-#page_form{ :style => 'display: none;' }
-  != render :partial => 'pages/form'
-
-#page_content{ }
-  != render :partial => 'new_comp_links'
-  - unless @page.comps.empty?
-    %fieldset#preview
-      %legend Bisher erfasste Komponenten (Vorschau)
-      != render :partial => 'pol/comps'
+  #page_content
+    != render 'page_content'

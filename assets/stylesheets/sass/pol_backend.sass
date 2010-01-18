@@ -110,9 +110,10 @@ body
       margin: 3px 2px 0px 5px
       border: 1px solid #a0a0a0
       border-bottom-width: 0px
+      background-color: #e0e0e0
   
       &:hover
-        background-color: #f0f0f0
+        background-color: #efefef
   
     .control-tab-active
       text-decoration: none
@@ -120,13 +121,50 @@ body
       float: left
       padding: 2px 4px
       font-weight: bold
-      margin: 1px 2px 0px 5px
+      margin: 2px 2px 0px 5px
       border: 1px solid #a0a0a0
       border-bottom-width: 0px
-      background-color: #e0e0e0
+      background: #F4F4F4
 
     a, a:visited
       color: inherit
+    
+  #page_edit  
+    padding: 10px
+    width: 900px
+    
+    fieldset
+      border: 1px solid #999
+      padding: 0 10px 10px
+      margin: 20px 10px
+      width: auto
+      
+      legend
+        margin: -11px -11px 10px
+        border: 1px solid #999
+        background-color: #ddd
+        border-bottom: 1px solid #999
+        padding: 2px 10px 2px 25px
+        width: 100%
+        position: relative
+        background-position: 5px center
+        
+        .control
+          position: absolute
+          right: 10px
+    
+    .comp_new
+      legend
+        background-image: url(../images/16x16/list-add.png)
+        background-repeat: no-repeat
+      ul
+        list-style: none
+
+        li
+          background-position: left
+          padding-left: 22px
+          float: left
+          margin-right: 20px
 
   // translation textfields should float
   fieldset .translation
@@ -149,6 +187,12 @@ body
   #new_comp_links
     clear: both
     width: auto
+    
+  .text_field
+    width: 100%
+    
+    #comp_content 
+      width: 100%
 
   label
     display: block
@@ -163,6 +207,9 @@ body
    
   .clearfix
     display: inline-block
+    
+  .icon
+    padding: 0 22px 0 0
    
   html[xmlns] .clearfix
     display: block

@@ -48,7 +48,7 @@ module PolHelper
 
   def render_subpage_nav(pages)
     content = ''
-    
+
     cur_i = pages.index(@page)
 
     pages.each_with_index do |page, index|
@@ -76,11 +76,11 @@ module PolHelper
     link = [ locale, link ].compact.join('/')
     "/#{link}"
   end
-  
+
   def javascript(*files)
     content_for(:head) { javascript_include_tag(*files) }
   end
-  
+
   def javascript_url(url)
     content_for :head, "<script type='text/javascript' src='#{url}'></script>\n"
   end
@@ -92,14 +92,14 @@ module PolHelper
   def back
     "&lt;"*3+" zur&uuml;ck"
   end
-  
+
 
   def render_form_partial(form)
     render :partial =>
       '/comps/form'+form.object.attributes['type'].to_s.underscore[4..-1],
       :object => form
   end
-  
+
   def render_show_partial(comp)
     kind = comp.kind
     main = comp.parent || comp
@@ -120,8 +120,8 @@ module PolHelper
 
     # render div holding everything above (hidden when a child)
     content = content_tag :div, content,
-                          :id => "comp_#{comp.id}", :class => "comp comp_#{kind}",
-                          :style => comp.parent.try(:pageable?) ? "display: none;" : '' 
+      :id => "comp_#{comp.id}", :class => "comp comp_#{kind}",
+      :style => comp.parent.try(:pageable?) ? "display: none;" : ''
 
     # render children recursive
     comp.children.each do |child|
@@ -131,8 +131,8 @@ module PolHelper
 
     content
   end
-  
-  
+
+
   def require_controls?
     return controller.is_a? PagesController
   end
@@ -144,20 +144,20 @@ module PolHelper
     content  = ''
     if (comp.editable?)
       content  = link_to '', edit_page_comp_path(comp.page.id, comp),
-                 :class => 'policon edit', :title => 'Bearbeiten'
+        :class => 'policon edit', :title => 'Bearbeiten'
     end
     if (comp.destroyable?)
       content += link_to '', page_comp_path(comp.page.id, comp),
-                 :confirm => "Are you sure?", :method => :delete,
-                 :class => 'policon delete', :title => 'Loeschen'
+        :confirm => "Are you sure?", :method => :delete,
+        :class => 'policon delete', :title => 'Loeschen'
     end
     if (comp.moveable?)
       content += link_to '', up_page_comp_path(main.page.id, main),
-                 :method => :put, :class => 'policon up',
-                 :title => 'Nach oben verschieben'
+        :method => :put, :class => 'policon up',
+        :title => 'Nach oben verschieben'
       content += link_to '', down_page_comp_path(main.page.id, main),
-                 :method => :put, :class => 'policon down',
-                 :title => 'Nach unten verschieben'
+        :method => :put, :class => 'policon down',
+        :title => 'Nach unten verschieben'
     end
 
     comp.allowed_children_comps.each do |comp_type|
@@ -172,44 +172,44 @@ module PolHelper
 
     return content_tag :div, content, :class => 'comp_control clearfix'
   end
-  
+
   def render_gallery_controls(gallery_comp, image_comp)
     content = link_to '', up_page_comp_path(gallery_comp.page.id, image_comp),
-               :method => :put, :class => 'policon up',
-               :title => 'Nach oben verschieben'
+      :method => :put, :class => 'policon up',
+      :title => 'Nach oben verschieben'
     content += link_to '', down_page_comp_path(gallery_comp.page.id, image_comp),
-               :method => :put, :class => 'policon down',
-               :title => 'Nach unten verschieben'
+      :method => :put, :class => 'policon down',
+      :title => 'Nach unten verschieben'
     content += link_to '', edit_page_comp_path(gallery_comp.page.id, image_comp),
-                          :class => 'policon edit', :title => 'Bearbeiten'
+      :class => 'policon edit', :title => 'Bearbeiten'
     content += link_to '', page_comp_path(gallery_comp.page.id, image_comp),
-               :confirm => "Are you sure?", :method => :delete,
-               :class => 'policon delete', :title => 'Loeschen'
+      :confirm => "Are you sure?", :method => :delete,
+      :class => 'policon delete', :title => 'Loeschen'
   end
-  
+
   def render_map_controls(comp)
-    content = link_to '', new_page_comp_comp_path(comp.page.id, comp, 
-                          :type => 'CompText', :style_class => 'left-box'),
-                          :class => 'policon texticon', :title => 'Text',
-                          :onclick => 'return granat.maps.editSubComp(this);'
-    content += link_to '', new_page_comp_comp_path(comp.page.id, comp, 
-                          :type => 'CompImage', :style_class => 'left-box'),
-                          :class => 'policon image', :title => 'Bild',
-                          :onclick => 'return granat.maps.editSubComp(this);'
-    content += link_to '', new_page_comp_comp_path(comp.page.id, comp, 
-                          :type => 'CompVideo', :style_class => 'left-box'),
-                          :class => 'policon video', :title => 'Video',
-                          :onclick => 'return granat.maps.editSubComp(this);'    
-    content += link_to '', new_page_comp_comp_path(comp.page.id, comp, 
-                          :type => 'CompRaw', :style_class => 'left-box'),
-                          :class => 'policon html', :title => 'HTML',
-                          :onclick => 'return granat.maps.editSubComp(this);'
-                          
+    content = link_to '', new_page_comp_comp_path(comp.page.id, comp,
+    :type => 'CompText', :style_class => 'left-box'),
+      :class => 'policon texticon', :title => 'Text',
+      :onclick => 'return granat.maps.editSubComp(this);'
+    content += link_to '', new_page_comp_comp_path(comp.page.id, comp,
+    :type => 'CompImage', :style_class => 'left-box'),
+      :class => 'policon image', :title => 'Bild',
+      :onclick => 'return granat.maps.editSubComp(this);'
+    content += link_to '', new_page_comp_comp_path(comp.page.id, comp,
+    :type => 'CompVideo', :style_class => 'left-box'),
+      :class => 'policon video', :title => 'Video',
+      :onclick => 'return granat.maps.editSubComp(this);'
+    content += link_to '', new_page_comp_comp_path(comp.page.id, comp,
+    :type => 'CompRaw', :style_class => 'left-box'),
+      :class => 'policon html', :title => 'HTML',
+      :onclick => 'return granat.maps.editSubComp(this);'
+
     return content_tag :p, content,
-           :style => 'padding-left: 40px; text-align: center;'
+      :style => 'padding-left: 40px; text-align: center;'
   end
-  
-  
+
+
   def collect_map_children(page)
     map_children = []
     return map_children if page.children.length == 0
@@ -219,22 +219,29 @@ module PolHelper
     end
     map_children
   end
-  
+
   def id_for(comp)
     "comp_container_#{comp.id}"
   end
-  
+
 
   # renders an ul / li tree of all pages
   def render_page_tree(pages = Page.roots, parent = nil)
-    content_tag :ul, { :id => ['tree', parent.try(:id)].compact.join('_') } do
+    content_tag :ul, { :id => tree_page_id(parent) } do
       pages.map do |page|
-        content_tag :li do
-          link_to(page.title, edit_page_path(page)) +
-          render_page_tree(page.children, page)
-        end
+        content_tag :li, render_page_tree_li(page), {:id => tree_page_id(page), :class => ('active' if page == @page)}
       end.join("\n")
     end
+  end
+  
+  def tree_page_id(page)
+    ['tree', 'page', page.try(:id)].compact.join('_')
+  end
+
+  def render_page_tree_li(page)
+    content = link_to(page.title, edit_page_path(page))
+    content << render_page_tree(page.children, page) if page.children.any?
+    content
   end
 
   def render_path(page, anchestors = [])
@@ -250,17 +257,17 @@ module PolHelper
     # 1. render ancestors
     page.ancestors.reverse.each do |a|
       content << render(:partial => 'pages/nav',
-        :locals => { :parent => a.parent,
-                     :pages => a.self_and_siblings,
-                     :active => a,
-                     :level => level += 1 })
+                        :locals => { :parent => a.parent,
+                                     :pages => a.self_and_siblings,
+                                     :active => a,
+                                     :level => level += 1 })
     end
     # 2. render sibling
     content << render(:partial => 'pages/nav',
-      :locals => { :parent => page.parent,
-                   :pages => page.self_and_siblings,
-                   :active => page,
-                   :level => level += 1 })
+                      :locals => { :parent => page.parent,
+                                   :pages => page.self_and_siblings,
+                                   :active => page,
+                                   :level => level += 1 })
     # 4. render children for existin records
     return content if page.new_record?
     return content if level >= pol_cfg.max_nav_level
@@ -270,20 +277,20 @@ module PolHelper
     # 'disclaimer' ... )
     return content if level == 1 && Page.root != page && page.children.empty?
     content << render(:partial => 'pages/nav',
-      :locals => { :parent => page, 
-                   :pages => page.children, 
-                   :active => nil,
-                   :level => level += 1 })
+                      :locals => { :parent => page,
+                                   :pages => page.children,
+                                   :active => nil,
+                                   :level => level += 1 })
   end
-  
+
   def render_subcomps_all(comp)
     render_subcomps(comp, "comps/subcomp")
   end
-  
+
   def render_subcomps_pos(comp)
     render_subcomps(comp, "comps/subcomp_pos")
   end
-  
+
   def render_subcomps(comp, partial)
     content = ''
     subcomps = comp.children
@@ -293,29 +300,29 @@ module PolHelper
     reg_cids = Array.new
     subcomps.each do |sc|
       content << render(:partial => partial,
-        :locals => { :comp => sc, :render_levels => true })
+                        :locals => { :comp => sc, :render_levels => true })
       reg_cids.push(sc.id) unless (sc.lat.nil? || sc.lng.nil?)
     end
     reg_cids_value = reg_cids.join(',')
-    content << hidden_field_tag("markers_register",reg_cids_value, 
+    content << hidden_field_tag("markers_register",reg_cids_value,
                                 {:id => 'markers.register'})
-    
+
     content
   end
-  
+
   def render_subcomps_reg(comps)
     content = ''
-    return '' if comps.nil? || comps.length == 0 
+    return '' if comps.nil? || comps.length == 0
     reg_cids = Array.new
     comps.each do |sc|
       reg_cids.push(sc.id) unless (sc.lat.nil? || sc.lng.nil?)
     end
     reg_cids_value = reg_cids.join(',')
-    content << hidden_field_tag("markers_register",reg_cids_value, 
+    content << hidden_field_tag("markers_register",reg_cids_value,
                                 {:id => 'markers.register'})
     content
   end
-  
+
   def render_map_children(page)
     child_comps = page.comp_map.children
     render_levels = false
@@ -329,10 +336,18 @@ module PolHelper
       if controller.is_a? PagesController || i < 10
         content += render :partial => 'comps/subcomp', :locals => { :comp => mc }
       end
-      content += render :partial => 'comps/subcomp_pos', :locals => 
+      content += render :partial => 'comps/subcomp_pos', :locals =>
         { :comp => mc, :render_levels => render_levels }
     end
     content += render_subcomps_reg(child_comps)
   end
-  
+
+
+  def parent_pages(pages = Page.roots, depth = 1)
+    pages.inject([]) do |list, page|
+      list << [page.title, page.id]
+      list += parent_pages(page.children, depth + 1) if depth < (pol_cfg.max_nav_level - 1)
+      list
+    end
+  end
 end
