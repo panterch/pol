@@ -29,11 +29,7 @@ class CompsController < PolBackendController
 
   def update
     if (@comp.update_attributes(params[:comp]))
-      <<<<<<< HEAD
       flash[:notice] = t('flash.comp.updated')
-      =======
-        flash[:notice] = t('flash.comp.updated')
-      >>>>>>> improvements
       redirect_to edit_page_url(@comp.page)
     else
       render :action => :edit
@@ -42,11 +38,7 @@ class CompsController < PolBackendController
 
   def destroy
     @comp.destroy
-    <<<<<<< HEAD
     flash[:notice] = t('flash.comp.destroyed')
-    =======
-      flash[:notice] = t('flash.comp.destroyed')
-    >>>>>>> improvements
     redirect_to edit_page_url(@comp.page)
   end
 
