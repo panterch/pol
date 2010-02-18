@@ -1,0 +1,187 @@
+Rails 3.0 Project Setup
+----------------------------------------------------------------------
+
+
+### to install rails3 i followed the instructions from
+### http://omgbloglol.com/post/371893012/the-path-to-rails-3-greenfielding-new-apps-with-the
+
+gem install rails3b
+gem install arel --pre
+gem install rails --pre
+
+### creating a new project
+
+rails yourapp
+cd myourapp
+
+### edit config/application.rb
+# g.template_engine     :haml
+# g.fixture_replacement :factory_girl, :dir => "test/factories"
+
+### edit Gemfile
+# gem "haml"
+# gem "RedCloth"
+# group :test do
+#   gem "factory_girl"
+#   gem "webrat"
+#   gem "mocha"
+# end
+
+### install alternate generators for haml and factory_girl
+git clone git://github.com/pjb3/rails3-generators.git lib/generators
+sed -i 's/rails\///' lib/generators/haml/scaffold/scaffold_generator.rb
+
+haml --rails .
+
+rails plugin install git://github.com/rails/acts_as_list.git
+rails plugin install git://github.com/rails/acts_as_tree.git
+rails plugin install git://github.com/rails/exception_notification.git
+rails plugin install git://github.com/thoughtbot/paperclip.git
+# rails plugin install git://github.com/technoweenie/permalink_fu.git
+rails plugin install git://github.com/jamesgolick/resource_controller.git
+
+### deal with non-rails3ish plugins
+
+# replace RAILS_ENV (do this where it is needed)
+sed -i 's/RAILS_ENV/Rails.env/' config/initializers/pol.rb
+
+# remove permalink_fu
+sed -i 's/has_permalink/#has_permalink/' app/models/page.rb
+# rails plugin remove permalink_fu
+#
+
+
+Fix Paperclip
+----------------------------------------------------------------------
+
+Use the Rails 3.0 Branch
+
+### paperclip
+mv -v vendor/plugins/paperclip/tasks vendor/plugins/paperclip/lib
+sed -i 's/RAILS_ROOT/Rails.root/' vendor/plugins/paperclip/lib/paperclip.rb
+
+cd vendor/plugins/paperclip/
+git branch --track rails3 origin/rails3
+git checkout rails3
+
+# Apply the fix described here
+http://jameswilding.net/2010/02/07/working-with-rails-3/
+
+
+Upgrade the routes
+----------------------------------------------------------------------
+
+Note: The rails upgrade plugin did not work for our routes. Here are
+some examples:
+
+Matplan::Application.routes.draw do |map|
+
+  post '/pages/:id/order' => 'pages#order', :as => :order_page
+
+  resources :pages do
+    resources :pages
+    resources :comps do
+      member do
+        put :up
+        put :down
+      end
+      resources :comps
+    end
+    resources :comp_texts
+    resources :comp_raws
+    resources :comp_file
+    resources :comp_videos
+    resources :comp_images
+    resources :comp_maps
+    resources :comp_galleries
+    resources :comp_subnav
+  end
+
+  match '/ls-R' => 'pol#sitemap'
+  match '/exception_test' => 'exception_test#error'
+
+end
+
+
+Unobitrusive Javascript Helpers
+----------------------------------------------------------------------
+
+Make sure your prototype Version is 1.6.1, older versions won't work.
+Best you checkout Rails 3.0 and use their prototype and scripty.
+
+Add the new javascript rails.js to your scripts.
+Add the following helper into your <head> (_html_head.html.haml):
+!= csrf_meta_tag
+
+
+Permalink_fu
+----------------------------------------------------------------------
+
+Permalink_fu did not work for me. I don't use permalinks yet, but here
+is a handy to_ascii method that should help generating them:
+
+String.class_eval do  
+
+  def to_ascii
+    # split in muti-byte aware fashion and translate characters over 127
+    # and dropping characters not in the translation hash
+    self.chars.collect { |c| (c.ord <= 127) ? c : translation_hash[c] }.join
+  end
+    
+protected
+  
+  def translation_hash
+    @@translation_hash ||= setup_translation_hash      
+  end
+  
+  def setup_translation_hash
+    accented_chars   = "ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüý".chars.to_a
+    unaccented_chars = "AAAAAACEEEEIIIIDNOOOOOxOUUUUYaaaaaaceeeeiiiinoooooouuuuy".chars.to_a
+
+    translation_hash = {}
+    accented_chars.each_with_index { |char, idx| translation_hash[char] = unaccented_chars[idx] }
+    translation_hash
+  end
+
+end
+
+Replace config.gem
+----------------------------------------------------------------------
+
+Here is my current Gemfile:
+
+# Edit this Gemfile to bundle your application's dependencies.
+source 'http://gemcutter.org'
+
+gem "rails", "3.0.0.beta"
+
+## Bundle edge rails:
+# gem "rails", :git => "git://github.com/rails/rails.git"
+
+# ActiveRecord requires a database adapter. By default,
+# Rails has selected sqlite3.
+gem "sqlite3-ruby", :require => "sqlite3"
+
+## Bundle the gems you use:
+# gem "bj"
+# gem "hpricot", "0.6"
+# gem "sqlite3-ruby", :require => "sqlite3"
+# gem "aws-s3", :require => "aws/s3"
+
+gem "haml", ">=2.2.9"
+gem "RedCloth", ">=4.2.2"
+
+## Bundle gems used only in certain environments:
+# gem "rspec", :group => :test
+# group :test do
+#   gem "webrat"
+# end
+
+group :test do
+  gem "factory_girl"
+  gem "webrat"
+  gem "mocha"
+end
+
+
+
