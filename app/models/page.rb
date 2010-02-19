@@ -9,10 +9,11 @@ class Page < ActiveRecord::Base
   acts_as_list :scope => :parent_id
 
   has_many :comps, :dependent => :destroy
-  
+
   has_attached_file :icon, :styles => pol_cfg.page_icon_styles,
                     :default_style => :normal
-  has_permalink [:ancestor_titles, :title]
+
+  #has_permalink [:ancestor_titles, :title]
 
 
   def order_children(ids)
@@ -62,14 +63,14 @@ class Page < ActiveRecord::Base
   def comps_bottom
     comps_styled('bottom-box')
   end
-  
+
   def comp_map
-    comps.find(:first, :order => :position, :conditions => 
+    comps.find(:first, :order => :position, :conditions =>
                { :type => 'CompMap' } )
   end
-  
+
   def comp_gallery
-    comps.find(:first, :order => :position, :conditions => 
+    comps.find(:first, :order => :position, :conditions =>
                 { :type => 'CompGallery' } )
   end
 

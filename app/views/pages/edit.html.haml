@@ -6,10 +6,10 @@
 
 #page_control
   %a.control-tab{ :id => 'page_control_tab_attribute', :href => '#', :onclick => "return edit_page_attribute();" }
-    Seitenattribute
+    Eigenschaften
   %a.control-tab-active{ :id => 'page_control_tab_content', :href => '#', :onclick => "return edit_page_content();" }
-    Seiteninhalte
-    
+    Inhalt
+
 #page_edit
   #page_form{ :style => 'display: none;' }
     != render :partial => 'pages/form'
