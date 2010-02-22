@@ -110,6 +110,11 @@ body {
         #pol_backend #page_edit fieldset legend .control {
           position: absolute;
           right: 10px; }
+    #pol_backend #page_edit .loc_edit ul {
+      list-style: none; }
+      #pol_backend #page_edit .loc_edit ul li {
+        float: left;
+        margin-right: 20px; }
     #pol_backend #page_edit .comp_new legend {
       background-image: url(../images/16x16/list-add.png);
       background-repeat: no-repeat; }

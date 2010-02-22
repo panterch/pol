@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090708155914) do
+ActiveRecord::Schema.define(:version => 20100222110507) do
 
   create_table "comps", :force => true do |t|
     t.integer  "page_id"
@@ -59,5 +59,14 @@ ActiveRecord::Schema.define(:version => 20090708155914) do
   end
 
   add_index "pages", ["permalink"], :name => "index_pages_on_permalink", :unique => true
+
+  create_table "settings", :force => true do |t|
+    t.string   "owner_type", :null => false
+    t.integer  "owner_id",   :null => false
+    t.string   "name",       :null => false
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

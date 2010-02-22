@@ -11,10 +11,14 @@ gem "mysql"
 gem "haml"
 gem 'RedCloth'
 
+git 'git://github.com/simplificator/has_setting.git'
+gem 'has_setting'
+
 group :test do
 #  gem "factory_girl"
   gem "webrat"
   gem "mocha"
+  gem 'ruby-debug'
 end
 
 ## Bundle the gems you use:

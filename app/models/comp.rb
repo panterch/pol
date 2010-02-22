@@ -1,10 +1,9 @@
 class Comp < ActiveRecord::Base
-
   if pol_cfg.multilang?
     translates :content
     accepts_nested_attributes_for :globalize_translations
   end
-  
+
   acts_as_tree :order => :position
   # scope visbile components to page and style (they are displayed in their
   # order on the page) and invisible components additionally to their parent
@@ -60,5 +59,5 @@ class Comp < ActiveRecord::Base
   def cacheable?
     true
   end
-  
+
 end

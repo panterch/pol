@@ -1,5 +1,4 @@
 class CompsController < PolBackendController
-
   before_filter :load_page, :except => [:index]
   before_filter :load_comp, :except => [:index, :new, :create]
   before_filter :load_parent

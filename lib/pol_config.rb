@@ -8,7 +8,8 @@ class PolConfig
                 :comp_gallery_control_style,
                 :comp_gallery_view_style,
                 :maps_api_key, :ga_api_key,
-                :stylesheets, :javascripts
+                :stylesheets, :javascripts,
+                :location_attributes, :page_attributes
 
   def initialize
     #
@@ -55,6 +56,16 @@ class PolConfig
     # _html_head partial
     @stylesheets = []
     @javascripts = ['prototype', 'effects', 'controls', 'dragdrop', 'rails', 'pol']
+
+    # special attributes for pages and component
+    # [] for Select
+    # '' for Text
+    # example: @page_attributes = {
+    #            :type => {:class => 'Array', :collection =>['type1', 'type2'], :name => 'Seiten Typ'},
+    #            :tags => {:class => 'String'}
+    #          }
+    @page_attributes = {:site_type => {:class => 'Array', :collection =>['type1', 'type2'], :name => 'Seiten Typ'},:tags => {:class => 'String'}}
+    @location_attributes = {:background => {:class => 'Array', :collection =>['type1', 'type2'], :name => 'Seiten Typ'}}
   end
 
   def multilang?

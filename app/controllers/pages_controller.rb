@@ -6,17 +6,18 @@ class PagesController < PolBackendController
   update.wants.html { redirect_to edit_page_url(object) }
 
   new_action.before { globalize_object(object) }
-  edit.before { globalize_object(object) }
+
+  edit.before { debugger; globalize_object(object) }
 
   def order
     template = params["pages_#{object.id}"].reject { |id| id.blank? }
     object.order_children(template)
-    
+
     if params[:no_rjs]
       render :nothing => true
-      return 
+      return
     end
-    
+
     render :update do |page|
       page.visual_effect :highlight, "pages_#{object.id}"
     end

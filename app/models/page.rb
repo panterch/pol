@@ -1,4 +1,7 @@
 class Page < ActiveRecord::Base
+  include DynamicAttributes
+
+  before_validation :assert_parent_not_self
 
   if pol_cfg.multilang?
     translates :title, :desc
@@ -87,6 +90,9 @@ class Page < ActiveRecord::Base
   end
 
 protected
+  def assert_parent_not_self
+    raise 'Object can not be parent of self' if self.parent_id == self.id
+  end
 
 
 end

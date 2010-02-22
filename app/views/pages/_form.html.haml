@@ -11,9 +11,10 @@
               != trans.text_field :title
       -else
         != f.text_field :title
-    .text_field
-      != f.label :parent_id, 'Eltern Knote'
-      != f.select :parent_id, options_for_select(parent_pages, @page.parent_id)
+    - if parent_pages(@page).any?
+      .text_field
+        != f.label :parent_id, 'Eltern Knote'
+        != f.select :parent_id, options_for_select(parent_pages(@page), @page.parent_id)
     .text_field
       != f.label :permalink, 'Permalink (wird automatisch generiert wenn leer)'
       != f.text_field :permalink
@@ -22,6 +23,8 @@
       != f.file_field :icon
       - if @page.icon.file?
         != image_tag @page.icon.url
+    - pol_cfg.page_attributes.each do |attribute, values|
+      .file_field= dynamic_field f, attribute, values
     .buttons
       != f.submit('Speichern')
 

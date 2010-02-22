@@ -233,7 +233,7 @@ module PolHelper
       end.join("\n")
     end
   end
-  
+
   def tree_page_id(page)
     ['tree', 'page', page.try(:id)].compact.join('_')
   end
@@ -343,11 +343,22 @@ module PolHelper
   end
 
 
-  def parent_pages(pages = Page.roots, depth = 1)
+  def parent_pages(current_page, pages = Page.roots, depth = 1)
     pages.inject([]) do |list, page|
-      list << [page.title, page.id]
-      list += parent_pages(page.children, depth + 1) if depth < (pol_cfg.max_nav_level - 1)
+      list << [page.title, page.id] unless page == current_page
+      list += parent_pages(current_page, page.children, depth + 1) if depth < (pol_cfg.max_nav_level - 1)
       list
     end
+  end
+
+  def dynamic_field(form, attribute, values)
+    field = form.label(attribute, values[:name] || attribute.to_s)
+    case values[:class]
+      when 'String'
+        field << form.text_field(attribute)
+      when 'Array'
+        field << form.collection_select(attribute, values[:collection], :to_s, :to_s)
+    end
+    field
   end
 end
