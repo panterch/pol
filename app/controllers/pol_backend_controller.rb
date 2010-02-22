@@ -9,7 +9,7 @@ class PolBackendController < ApplicationController
   protected
 
     def authenticate
-      return true if 'test' == RAILS_ENV
+      return true if 'test' == Rails.env
       return true if pol_cfg.password.blank?
       authenticate_or_request_with_http_basic do |username, password|
         username == "admin" && password == pol_cfg.password
@@ -29,6 +29,6 @@ class PolBackendController < ApplicationController
         model.globalize_translations.build({ :locale => lang })
       end
     end
-      
-  
+
+
 end

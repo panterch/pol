@@ -27,7 +27,7 @@ Rails::Application.routes.draw do
     resources :comp_subnav, :controller => 'comps'
   end
 
-  match '/ls-R.:format', :to => 'pol#sitemap'
+  match '/ls-R(.:format)', :to => 'pol#sitemap'
   match '/exception_test', :to => 'exception_test#error'
 
   # The priority is based upon order of creation:

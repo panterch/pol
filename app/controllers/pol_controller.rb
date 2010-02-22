@@ -58,7 +58,7 @@ class PolController < ApplicationController
       @root = Page.root
       @page = Page.retrieve(params[:permalink])
       if @page.nil?
-        render :file => "#{RAILS_ROOT}/public/404.html", :status => 404 and return 
+        render :file => "#{Rails.root}/public/404.html", :status => 404 and return
       end
 
       # build the navigation

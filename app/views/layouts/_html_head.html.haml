@@ -2,6 +2,7 @@
   = yield :title
 != stylesheet_link_tag(pol_cfg.stylesheets, :cache => true)
 != javascript_include_tag(pol_cfg.javascripts, :cache => true)
+!= csrf_meta_tag
 != yield :head
 %meta{ :name => 'author', :content => 'http://www.panter.ch' }
 %meta{ :name => 'robots', :content => 'noodp' }

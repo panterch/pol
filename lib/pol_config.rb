@@ -3,7 +3,7 @@ class PolConfig
 
   attr_accessor :languages, :version, :max_nav_level,
                 :page_icon_styles,
-                :comp_locations, :comp_available, 
+                :comp_locations, :comp_available,
                 :comp_image_styles, :password,
                 :comp_gallery_control_style,
                 :comp_gallery_view_style,
@@ -31,7 +31,7 @@ class PolConfig
     # which thumbs to compute for images
     @comp_image_styles =  { :'top-box' => "740",
                            :'bottom-box' => "740",
-                           :'left-box' => "490", 
+                           :'left-box' => "490",
                            :'right-box' => "240",
                            :'banner' => "240",
                            :'gallery-thumbnail' => "75",
@@ -54,7 +54,7 @@ class PolConfig
     # stylesheets and javascripts used in front- and backend when using the
     # _html_head partial
     @stylesheets = ['application']
-    @javascripts = ['prototype', 'effects', 'controls', 'dragdrop', 'pol'] 
+    @javascripts = ['prototype', 'effects', 'controls', 'dragdrop', 'rails', 'pol']
   end
 
   def multilang?
