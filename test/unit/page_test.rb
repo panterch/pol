@@ -67,18 +67,16 @@ class PageTest < ActiveSupport::TestCase
   end
 
   def test_permalink_generation_when_empty
-    #TODO fix permalink_fu
-    #p = @c1
-    #p.update_attributes(:permalink => '')
-    #assert_not_equal '', p.reload.permalink
+    p = @c1
+    p.update_attributes(:permalink => '')
+    assert_not_equal '', p.reload.permalink
   end
 
   def test_permalink_uniqueness
-    #TODO fix permalink_fu
-    #@c1.update_attributes(:permalink => 'unique')
-    #@c12.update_attributes(:permalink => 'unique')
-    #assert_not_equal @c1.reload.permalink,
-    #                 @c12.reload.permalink
+    @c1.update_attributes(:permalink => 'unique')
+    @c12.update_attributes(:permalink => 'unique')
+    assert_not_equal @c1.reload.permalink,
+                     @c12.reload.permalink
   end
 
   def test_nav_children

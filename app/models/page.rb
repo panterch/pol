@@ -13,7 +13,7 @@ class Page < ActiveRecord::Base
   has_attached_file :icon, :styles => pol_cfg.page_icon_styles,
                     :default_style => :normal
 
-  #has_permalink [:ancestor_titles, :title]
+  has_permalink [:ancestor_titles, :title]
 
 
   def order_children(ids)
