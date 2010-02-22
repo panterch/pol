@@ -1,6 +1,6 @@
 module DynamicAttributes
   def self.included(base)
-    dynamic_attributes = pol_cfg.send("#{base.name.downcase}_attributes")
+    dynamic_attributes = pol_cfg.send("#{base.name.downcase}_attributes").clone
     if base.name == 'Page'
       pol_cfg.location_attributes.each do |attribute, values|
         pol_cfg.comp_locations.each do |location|
@@ -8,6 +8,7 @@ module DynamicAttributes
         end
       end
     end
+
     base.class_eval do
       dynamic_attributes.keys.each do |attribute|
           has_setting(attribute)

@@ -57,15 +57,15 @@ class PolConfig
     @stylesheets = []
     @javascripts = ['prototype', 'effects', 'controls', 'dragdrop', 'rails', 'pol']
 
-    # special attributes for pages and component
+    # special attributes for pages and component location
     # [] for Select
     # '' for Text
     # example: @page_attributes = {
     #            :type => {:class => 'Array', :collection =>['type1', 'type2'], :name => 'Seiten Typ'},
     #            :tags => {:class => 'String'}
     #          }
-    @page_attributes = {:site_type => {:class => 'Array', :collection =>['type1', 'type2'], :name => 'Seiten Typ'},:tags => {:class => 'String'}}
-    @location_attributes = {:background => {:class => 'Array', :collection =>['type1', 'type2'], :name => 'Seiten Typ'}}
+    @page_attributes = {}
+    @location_attributes = {}
   end
 
   def multilang?
