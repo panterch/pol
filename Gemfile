@@ -9,6 +9,13 @@ gem "rails", "3.0.0.beta"
 
 gem "mysql"
 gem "haml"
+gem 'RedCloth'
+
+group :test do
+#  gem "factory_girl"
+  gem "webrat"
+  gem "mocha"
+end
 
 ## Bundle the gems you use:
 # gem "bj"

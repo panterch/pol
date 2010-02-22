@@ -40,3 +40,5 @@ module Pol
     config.filter_parameters << :password
   end
 end
+require "lib/pol_config"
+

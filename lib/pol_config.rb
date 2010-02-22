@@ -53,7 +53,7 @@ class PolConfig
 
     # stylesheets and javascripts used in front- and backend when using the
     # _html_head partial
-    @stylesheets = ['application']
+    @stylesheets = []
     @javascripts = ['prototype', 'effects', 'controls', 'dragdrop', 'rails', 'pol']
   end
 

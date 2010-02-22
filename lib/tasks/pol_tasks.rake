@@ -1,7 +1,9 @@
 namespace :pol do
   desc "Sync extra files from pol"
   task :sync do
-    system "rsync -ruv vendor/plugins/pol3/db/migrate db"
-    system "rsync -ruv vendor/plugins/pol3/public public"
+    # sync migraitons and public folder
+    system "rsync -ruv vendor/plugins/pol/db/migrate db"
+    system "rsync -ruv vendor/plugins/pol/public public"
+    system "rsync -ruv vendor/plugins/pol/vendor/plugins vendor"
   end
 end

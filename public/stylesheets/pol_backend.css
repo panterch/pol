@@ -1,0 +1,159 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+
+#pol_backend {
+  margin: 1em; }
+  #pol_backend .leaves {
+    float: left;
+    margin-right: 20px; }
+    #pol_backend .leaves ul {
+      list-style-type: none;
+      padding: 0;
+      width: auto;
+      overflow: auto; }
+    #pol_backend .leaves li, #pol_backend .leaves div.new {
+      clear: both;
+      vertical-align: middle;
+      line-height: 22px;
+      height: 22px; }
+    #pol_backend .leaves li.active {
+      border: 1px dotted gray; }
+    #pol_backend .leaves a, #pol_backend .leaves a:visited {
+      color: inherit; }
+  #pol_backend .policon {
+    width: 22px;
+    height: 22px;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0; }
+  #pol_backend .drag {
+    background: url(../images/16x16/mail-send-receive.png) center no-repeat; }
+  #pol_backend .preview {
+    background: url(../images/16x16/text-html.png) center no-repeat; }
+  #pol_backend .edit {
+    background: url(../images/16x16/accessories-text-editor.png) center no-repeat; }
+  #pol_backend .delete {
+    background: url(../images/16x16/user-trash.png) center no-repeat; }
+  #pol_backend .newicon {
+    background: url(../images/16x16/document-new.png) center no-repeat; }
+  #pol_backend .up {
+    background: url(../images/16x16/go-up.png) center no-repeat; }
+  #pol_backend .down {
+    background: url(../images/16x16/go-down.png) center no-repeat; }
+  #pol_backend video, #pol_backend .CompVideo {
+    background: url(../images/16x16/applications-multimedia.png) center no-repeat; }
+  #pol_backend .image, #pol_backend .CompImage {
+    background: url(../images/16x16/contact-new.png) center no-repeat; }
+  #pol_backend .texticon, #pol_backend .CompText, #pol_backend .CompRich {
+    background: url(../images/16x16/text-html.png) center no-repeat; }
+  #pol_backend .html, #pol_backend .CompRaw {
+    background: url(../images/16x16/document-properties.png) center no-repeat; }
+  #pol_backend .CompPlaceholder {
+    background: url(../images/16x16/applications-other.png) center no-repeat; }
+  #pol_backend .CompGallery {
+    background: url(../images/16x16/emblem-photos.png) center no-repeat; }
+  #pol_backend .CompBanner {
+    background: url(../images/16x16/applications-games.png) center no-repeat; }
+  #pol_backend .CompMailer {
+    background: url(../images/16x16/internet-mail.png) center no-repeat; }
+  #pol_backend .html, #pol_backend .CompFile {
+    background: url(../images/16x16/document-save.png) center no-repeat; }
+  #pol_backend #page_control {
+    margin-top: 5px;
+    height: 22px;
+    float: none;
+    clear: both;
+    border-bottom: 1px solid #a0a0a0; }
+    #pol_backend #page_control .control-tab {
+      text-decoration: none;
+      display: inline-block;
+      float: left;
+      padding: 1px 3px;
+      margin: 3px 2px 0px 5px;
+      border: 1px solid #a0a0a0;
+      border-bottom-width: 0px;
+      background-color: #e0e0e0; }
+      #pol_backend #page_control .control-tab:hover {
+        background-color: #efefef; }
+    #pol_backend #page_control .control-tab-active {
+      text-decoration: none;
+      display: inline-block;
+      float: left;
+      padding: 2px 4px;
+      font-weight: bold;
+      margin: 2px 2px 0px 5px;
+      border: 1px solid #a0a0a0;
+      border-bottom-width: 0px;
+      background: #F4F4F4; }
+    #pol_backend #page_control a, #pol_backend #page_control a:visited {
+      color: inherit; }
+  #pol_backend #page_edit {
+    padding: 10px;
+    width: 900px; }
+    #pol_backend #page_edit fieldset {
+      border: 1px solid #999;
+      padding: 0 10px 10px;
+      margin: 20px 10px;
+      width: auto; }
+      #pol_backend #page_edit fieldset legend {
+        margin: -11px -11px 10px;
+        border: 1px solid #999;
+        background-color: #ddd;
+        border-bottom: 1px solid #999;
+        padding: 2px 10px 2px 25px;
+        width: 100%;
+        position: relative;
+        background-position: 5px center; }
+        #pol_backend #page_edit fieldset legend .control {
+          position: absolute;
+          right: 10px; }
+    #pol_backend #page_edit .comp_new legend {
+      background-image: url(../images/16x16/list-add.png);
+      background-repeat: no-repeat; }
+    #pol_backend #page_edit .comp_new ul {
+      list-style: none; }
+      #pol_backend #page_edit .comp_new ul li {
+        background-position: left;
+        padding-left: 22px;
+        float: left;
+        margin-right: 20px; }
+  #pol_backend fieldset .translation {
+    float: left;
+    margin-right: 5px; }
+  #pol_backend .comp {
+    border-left: 1px dotted gray;
+    border-top: 1px dotted gray;
+    padding-bottom: 10px; }
+  #pol_backend .subcomps {
+    float: none;
+    clear: both; }
+  #pol_backend .subcomp {
+    border: 1px solid #909090;
+    float: none; }
+  #pol_backend #new_comp_links {
+    clear: both;
+    width: auto; }
+  #pol_backend .text_field {
+    width: 100%; }
+    #pol_backend .text_field #comp_content {
+      width: 100%; }
+  #pol_backend label {
+    display: block; }
+  #pol_backend .clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0; }
+  #pol_backend .clearfix {
+    display: inline-block; }
+  #pol_backend .icon {
+    padding: 0 22px 0 0; }
+  #pol_backend html[xmlns] .clearfix {
+    display: block; }
+  #pol_backend * html .clearfix {
+    height: 1%; }
