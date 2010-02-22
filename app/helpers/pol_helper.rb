@@ -346,7 +346,7 @@ module PolHelper
   def parent_pages(current_page, pages = Page.roots, depth = 1)
     pages.inject([]) do |list, page|
       list << [page.title, page.id] unless page == current_page
-      list += parent_pages(current_page, page.children, depth + 1) if depth < (pol_cfg.max_nav_level - 1)
+      list += parent_pages(current_page, page.children, depth + 1) if depth < (pol_cfg.max_nav_level - 1) && pages.exclude?(current_page)
       list
     end
   end
