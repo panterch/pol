@@ -91,7 +91,7 @@ class Page < ActiveRecord::Base
 
 protected
   def assert_parent_not_self
-    raise 'Object can not be parent of self' if self.parent_id == self.id
+    raise 'Object can not be parent of self' if self.parent_id && self.parent_id == self.id
   end
 
 

@@ -18,7 +18,7 @@ group :test do
 #  gem "factory_girl"
   gem "webrat"
   gem "mocha"
-  gem 'ruby-debug'
+  #gem 'ruby-debug' => not ruby 1.9 ready
 end
 
 ## Bundle the gems you use:

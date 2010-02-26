@@ -22,7 +22,7 @@ Rails::Application.routes.draw do |map|
     resources :comp_subnav
   end
 
-  match '/ls-R' => 'pol#sitemap'
+  match '/ls-R(.:format)' => 'pol#sitemap'
   match '/exception_test' => 'exception_test#error'
   match '/:permalink', :to => 'pol#show'
 end
