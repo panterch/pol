@@ -18,7 +18,6 @@ class Page < ActiveRecord::Base
 
   has_permalink [:ancestor_titles, :title]
 
-
   def order_children(ids)
     ids.reverse.each do |c|
       c = Page.find(:first, :conditions => { :parent_id => self.id, :id => c })
@@ -89,6 +88,9 @@ class Page < ActiveRecord::Base
     true
   end
 
+  def comp_locations
+    pol_cfg.comp_locations
+  end
 protected
   def assert_parent_not_self
     raise 'Object can not be parent of self' if self.parent_id && self.parent_id == self.id
