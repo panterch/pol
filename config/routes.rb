@@ -1,4 +1,5 @@
 Rails::Application.routes.draw do |map|
+  match '/pages(.:format)', :to => 'pages#index'
   resources :pages do
     member do
       post :order
@@ -22,7 +23,7 @@ Rails::Application.routes.draw do |map|
     resources :comp_subnav
   end
 
-  match '/ls-R(.:format)' => 'pol#sitemap'
-  match '/exception_test' => 'exception_test#error'
+  match '/ls-R(.:format)', :to => 'pol#sitemap'
+  match '/exception_test', :to => 'exception_test#error'
   match '/:permalink', :to => 'pol#show'
 end
