@@ -1,5 +1,4 @@
 Rails::Application.routes.draw do |map|
-  match '/pages(.:format)', :to => 'pages#index'
   resources :pages do
     member do
       post :order
@@ -25,5 +24,5 @@ Rails::Application.routes.draw do |map|
 
   match '/ls-R(.:format)', :to => 'pol#sitemap'
   match '/exception_test', :to => 'exception_test#error'
-  match '/:permalink', :to => 'pol#show'
+  match '/:permalink(.:format)', :to => 'pol#show'
 end

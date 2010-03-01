@@ -1,7 +1,7 @@
 -# renders partials for a given page. you may specify explicitly which styles
 -# should be rendered by defining the local varialbe locations. by default
 -# all locations defined in pol_cfg.comp_locations are rendered.
--locations ||= pol_cfg.comp_locations
+-locations ||= @page.comp_locations
 -locations.each do |comp_style|
   %div{:class => comp_style}
     - @page.comps_styled(comp_style).each do |comp|

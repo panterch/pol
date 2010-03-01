@@ -28,7 +28,8 @@
     .buttons
       != f.submit('Speichern')
 
--form_for @page, :html => { :method => :delete, :id => 'delete_page' }  do |f|
-  - field_set_tag "Seite loeschen" do
-    != f.submit 'Seite loeschen', :confirm => 'Dies loescht die Seite und alle ihre Unterseiten. Weiterfahren?', :id => 'delete_page_submit'
+- unless @page.new_record?
+  -form_for @page, :html => { :method => :delete, :id => 'delete_page' }  do |f|
+    - field_set_tag "Seite loeschen" do
+      != f.submit 'Seite loeschen', :confirm => 'Dies loescht die Seite und alle ihre Unterseiten. Weiterfahren?', :id => 'delete_page_submit'
 
