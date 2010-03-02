@@ -61,55 +61,38 @@ body {
     background: url(../images/16x16/internet-mail.png) center no-repeat; }
   #pol_backend .html, #pol_backend .CompFile {
     background: url(../images/16x16/document-save.png) center no-repeat; }
-  #pol_backend #page_control {
-    margin-top: 5px;
-    height: 22px;
-    float: none;
-    clear: both;
-    border-bottom: 1px solid #a0a0a0; }
-    #pol_backend #page_control .control-tab {
-      text-decoration: none;
-      display: inline-block;
-      float: left;
-      padding: 1px 3px;
-      margin: 3px 2px 0px 5px;
-      border: 1px solid #a0a0a0;
-      border-bottom-width: 0px;
-      background-color: #e0e0e0; }
-      #pol_backend #page_control .control-tab:hover {
-        background-color: #efefef; }
-    #pol_backend #page_control .control-tab-active {
-      text-decoration: none;
-      display: inline-block;
-      float: left;
-      padding: 2px 4px;
-      font-weight: bold;
-      margin: 2px 2px 0px 5px;
-      border: 1px solid #a0a0a0;
-      border-bottom-width: 0px;
-      background: #F4F4F4; }
-    #pol_backend #page_control a, #pol_backend #page_control a:visited {
+    #pol_backend .html #page_control, #pol_backend .CompFile #page_control {
+      margin-top: 5px;
+      height: 25px;
+      float: none;
+      clear: both;
+      border-bottom: 1px solid #a0a0a0; }
+      #pol_backend .html #page_control .control-tab, #pol_backend .CompFile #page_control .control-tab {
+        text-decoration: none;
+        display: inline-block;
+        float: left;
+        padding: 1px 3px;
+        margin: 3px 2px 0px 5px;
+        border: 1px solid #a0a0a0;
+        border-bottom-width: 0px;
+        background-color: #e0e0e0; }
+        #pol_backend .html #page_control .control-tab:hover, #pol_backend .CompFile #page_control .control-tab:hover {
+          background-color: #efefef; }
+      #pol_backend .html #page_control .control-tab-active, #pol_backend .CompFile #page_control .control-tab-active {
+        text-decoration: none;
+        display: inline-block;
+        float: left;
+        padding: 2px 4px;
+        font-weight: bold;
+        margin: 2px 2px 0px 5px;
+        border: 1px solid #a0a0a0;
+        border-bottom-width: 0px;
+        background: #FFF; }
+    #pol_backend .html a, #pol_backend .html a:visited, #pol_backend .CompFile a, #pol_backend .CompFile a:visited {
       color: inherit; }
   #pol_backend #page_edit {
     padding: 10px;
     width: 900px; }
-    #pol_backend #page_edit fieldset {
-      border: 1px solid #999;
-      padding: 0 10px 10px;
-      margin: 20px 10px;
-      width: auto; }
-      #pol_backend #page_edit fieldset legend {
-        margin: -11px -11px 10px;
-        border: 1px solid #999;
-        background-color: #ddd;
-        border-bottom: 1px solid #999;
-        padding: 2px 10px 2px 25px;
-        width: 100%;
-        position: relative;
-        background-position: 5px center; }
-        #pol_backend #page_edit fieldset legend .control {
-          position: absolute;
-          right: 10px; }
     #pol_backend #page_edit .loc_edit ul {
       list-style: none; }
       #pol_backend #page_edit .loc_edit ul li {
@@ -162,3 +145,21 @@ body {
     display: block; }
   #pol_backend * html .clearfix {
     height: 1%; }
+
+fieldset {
+  border: 1px solid #999;
+  padding: 0 10px 10px;
+  margin: 20px 10px;
+  width: auto; }
+  fieldset legend {
+    margin: -11px -11px 10px;
+    border: 1px solid #999;
+    background-color: #ddd;
+    border-bottom: 1px solid #999;
+    padding: 2px 10px 2px 25px;
+    width: 100%;
+    position: relative;
+    background-position: 5px center; }
+    fieldset legend .control {
+      position: absolute;
+      right: 10px; }

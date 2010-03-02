@@ -41,10 +41,20 @@ class PolBaseController < ApplicationController
       end
       # js responds with a javascript usable by tinymce
       format.js do
+        tiny_mce_lists = ''
+        # Images
         imgs = CompImage.all.map do |c|
           "['#{c.media_file_name}', '#{c.media.url(:original)}']"
         end.join(',')
-        render :text => "var tinyMCEImageList = new Array(#{imgs});"
+        tiny_mce_lists << "var tinyMCEImageList = new Array(#{imgs});"
+
+        # Pages
+        pages = Page.all.map do |p|
+          "['#{p.title}', '/#{p.permalink}']"
+        end.join(',')
+        tiny_mce_lists << "var tinyMCELinkList = new Array(#{pages});"
+
+        render :text => tiny_mce_lists
       end
     end
 
