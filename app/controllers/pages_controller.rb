@@ -2,12 +2,18 @@ class PagesController < PolBackendController
   resource_controller
 
   index.wants.html { redirect_to edit_page_url(Page.root) }
+
   create.wants.html { redirect_to edit_page_url(object) }
+  create.flash { t('flash.page.created') }
+
   update.wants.html { redirect_to edit_page_url(object) }
+  update.flash { t('flash.page.updated') }
 
   new_action.before { globalize_object(object) }
 
   edit.before { debugger; globalize_object(object) }
+
+  destroy.flash { t('flash.page.destroyed') }
 
   def order
     template = params["pages_#{object.id}"].reject { |id| id.blank? }

@@ -1,7 +1,6 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source 'http://gemcutter.org'
 
-
 gem "rails", "3.0.0.beta"
 
 ## Bundle edge rails:
@@ -15,7 +14,6 @@ git 'git://github.com/simplificator/has_setting.git'
 gem 'has_setting'
 
 group :test do
-#  gem "factory_girl"
   gem "webrat"
   gem "mocha"
   #gem 'ruby-debug' => not ruby 1.9 ready
