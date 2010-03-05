@@ -36,7 +36,7 @@ haml --rails .
 rails plugin install git://github.com/rails/acts_as_list.git
 rails plugin install git://github.com/rails/acts_as_tree.git
 rails plugin install git://github.com/rails/exception_notification.git
-rails plugin install git://github.com/thoughtbot/paperclip.git
+# rails plugin install git://github.com/thoughtbot/paperclip.git
 # rails plugin install git://github.com/technoweenie/permalink_fu.git
 rails plugin install git://github.com/jamesgolick/resource_controller.git
 
@@ -48,24 +48,17 @@ sed -i 's/RAILS_ENV/Rails.env/' config/initializers/pol.rb
 # remove permalink_fu
 sed -i 's/has_permalink/#has_permalink/' app/models/page.rb
 # rails plugin remove permalink_fu
-#
 
 
-Fix Paperclip
-----------------------------------------------------------------------
-
-Use the Rails 3.0 Branch
-
-### paperclip
-mv -v vendor/plugins/paperclip/tasks vendor/plugins/paperclip/lib
-sed -i 's/RAILS_ROOT/Rails.root/' vendor/plugins/paperclip/lib/paperclip.rb
-
+### install & fix paperclib rails3-branch
+# install
+git clone git://github.com/thoughtbot/paperclip.git vendor/plugins/paperclip
+# switch to branch rails3
 cd vendor/plugins/paperclip/
 git branch --track rails3 origin/rails3
 git checkout rails3
-
-# Apply the fix described here
-http://jameswilding.net/2010/02/07/working-with-rails-3/
+# apply fix from http://jameswilding.net/2010/02/07/working-with-rails-3/
+sed -i 's/{|result, obj| result == false }//' lib/paperclip/attachment.rb 
 
 
 Upgrade the routes
