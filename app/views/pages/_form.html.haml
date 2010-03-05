@@ -1,6 +1,6 @@
 -form_for [@page.parent, @page], :html => { :multipart => true }  do |f|
   - field_set_tag "Seiten Eigenschaften" do
-    .text_field.clearfix
+    .text_field.page_title.clearfix
       %label Navigationstitel
       -if pol_cfg.multilang?
         - f.fields_for :globalize_translations do |trans|
@@ -12,13 +12,13 @@
       -else
         != f.text_field :title
     - if parent_pages(@page).any?
-      .text_field
+      .text_field.page_parent
         != f.label :parent_id, 'Eltern Knote'
         != f.select :parent_id, options_for_select(parent_pages(@page), @page.parent_id)
-    .text_field
+    .text_field.page_permalink
       != f.label :permalink, 'Permalink (wird automatisch generiert wenn leer)'
       != f.text_field :permalink
-    .file_field
+    .file_field.page_icon
       != f.label :icon, 'Ikone fuer Menu'
       != f.file_field :icon
       - if @page.icon.file?
