@@ -9,6 +9,7 @@ gem "rails", "3.0.0.beta"
 gem "mysql"
 gem "haml"
 gem 'RedCloth'
+gem 'globalize2'
 
 git 'git://github.com/simplificator/has_setting.git'
 gem 'has_setting'
