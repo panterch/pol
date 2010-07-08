@@ -1,7 +1,11 @@
-sudo gem install RedCloth
-sudo gem install haml
+## Installation notes
+## Last checked with Rails 2.3.8
 
-rails dein_neues_pol_cmd
+sudo gem install --no-rdoc --no-ri rails RedCloth haml
+
+NEW_APP=yourapp
+rails $NEW_APP
+cd $NEW_APP
 
 ./script/plugin install git://github.com/rails/acts_as_list.git
 ./script/plugin install git://github.com/rails/acts_as_tree.git
@@ -14,17 +18,15 @@ haml --rails .
 
 rake rails:freeze:gems
 
-# zuerst einchecken auf cat (sonst geht der rel. submodule path unten nicht)
+# Initialize as git repository before adding the pol submodule
 git init
-# .gitignore file machen, auf Server das git repo anlegen
+# Now create a .gitignore file before checking in the files
 git add .
 git commit -a -m 'initial checkin'
-git remote add origin git@cat:dein_repo.git -- < hier dein repo
-git push origin master
 
 
 # git submodule setup
-git submodule add git@cat.panter.ch:pol.git vendor/plugins/pol
+git submodule add git@github.com:panter/pol.git vendor/plugins/pol
 git submodule init
 git submodule update
 
@@ -32,13 +34,11 @@ git submodule update
 ./vendor/plugins/pol/sync.sh
 
 # environment.rb anpassen
-
-  # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+  config.time_zone = 'Bern'
   config.i18n.default_locale = :de
-  
-  # caching
   config.action_controller.page_cache_directory = RAILS_ROOT + "/public/cache/"
   config.active_record.observers = :page_sweeper
+
 end
 
 # haml configuration
@@ -61,9 +61,11 @@ config.gem "mocha"
   # link cms pages
   map.connect '/:permalink', :controller => 'pol', :action => 'show'
 
-rm public/index.html
+git rm public/index.html
 
 # configure pol: /config/initializers/pol.rb
+# Note: This is the main configuration file for pol. It has many settings, you
+#       may consider vendor/plugins/pol/lib/pol_config.rb for a full list.
 pol_cfg.comp_locations = [ 'left-box', 'right-box' ]
 pol_cfg.comp_available = {
   'left-box' => %w( CompText CompImage ),
@@ -71,7 +73,20 @@ pol_cfg.comp_available = {
 }
 pol_cfg.password = 'XXXX'
 
+rake db:migrate
+./script/server
 
+# you have now a running pol instance on http://localhost:3000 and
+# http://localhost:3000/pages
+
+# place your stylesheet in /stylesheets/application.css
+
+# you can now adapt layout and components by overwriting the enignes classes
+# and templates, e.g. 
+
+
+
+### Deployment instructions
 
 # capify
 capify .
