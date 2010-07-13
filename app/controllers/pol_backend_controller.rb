@@ -10,6 +10,7 @@ class PolBackendController < ApplicationController
   protected
 
     def authenticate
+      return true if 'development' == RAILS_ENV
       return true if 'test' == RAILS_ENV
       return true if pol_cfg.password.blank?
       authenticate_or_request_with_http_basic do |username, password|
